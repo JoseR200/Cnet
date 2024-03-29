@@ -3,12 +3,15 @@ package modelos;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DirectorProfesores {
+public class Director {
 	private String usuarioDirector;
 	private List<String> profesores;
-	public DirectorProfesores(String usuarioDirector) {
+	private List<String> asignaturas;
+	
+	public Director(String usuarioDirector) {
 		this.usuarioDirector = usuarioDirector;
 		this.profesores = new ArrayList<>();
+		this.asignaturas = new ArrayList<>();
 	}
 	
 	public String getUsuarioDirector() {
@@ -21,8 +24,14 @@ public class DirectorProfesores {
 	public List<String> getProfesores() {
 		return profesores;
 	}
-	
 	public void addProfesor(String profesor) {
     	this.profesores.add(profesor);
+    }
+	
+	public List<String> getAsignaturas() {
+		return asignaturas;
+	}
+	public void addAsignatura(String asignatura) {
+    	this.asignaturas.add(asignatura);
     }
 }

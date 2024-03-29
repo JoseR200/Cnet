@@ -76,7 +76,8 @@ public class ConsolePrint {
 		
 		System.out.println("1. Gestionar Profesores");
 		System.out.println("2. Gestionar Asignaturas");
-		System.out.println("3. Cerrar sesion");
+		System.out.println("3. Gestionar Alumnos");
+		System.out.println("4. Cerrar sesion");
 		System.out.print("Ingrese una opcion: ");
 		opcionString = input.next();
 		System.out.println("");
@@ -87,7 +88,8 @@ public class ConsolePrint {
 	public String menuProfesor() {
 		String opcionString = "";
 		
-		System.out.println("1. TODO PROFE");
+		System.out.println("1. Ver informacion personal");
+		System.out.println("2. Gestionar asignaturas");
 		System.out.println("3. Cerrar sesion");
 		System.out.print("Ingrese una opcion: ");
 		opcionString = input.next();
@@ -99,8 +101,8 @@ public class ConsolePrint {
 	public String menuAlumno() {
 		String opcionString = "";
 		
-		System.out.println("1. TODO ALUMNO");
-		System.out.println("3. Cerrar sesion");
+		System.out.println("1. Gestionar asignaturas");
+		System.out.println("2. Cerrar sesion");
 		System.out.print("Ingrese una opcion: ");
 		opcionString = input.next();
 		System.out.println("");
@@ -116,9 +118,10 @@ public class ConsolePrint {
 			System.out.println(p);
 		}
 		System.out.println("");
-		System.out.println("1. TODO ver profesor");
-		System.out.println("2. Crear profesor");
-		System.out.println("3. Regresar");
+		System.out.println("1. Crear nuevo profesor");
+		System.out.println("2. Despedir profesor");
+		System.out.println("3. Ver informacion de un profesor");
+		System.out.println("4. Regresar");
 		System.out.print("Ingrese una opcion: ");
 		opcionString = input.next();
 		System.out.println("");
@@ -126,9 +129,37 @@ public class ConsolePrint {
 		return opcionString;
 	}
 	
-	public void gestionarAsignaturasDirector() {
+	public String gestionarAsignaturasDirector(List<String> asignaturas) {
+		String opcionString = "";
+		
 		System.out.println("Aqui estan las asignaturas que se imparten en el campus");
+		for (String a: asignaturas) {
+			System.out.println(a);
+		}
 		System.out.println("");
+		System.out.println("1. Crear nueva asignatura");
+		System.out.println("2. Asignar asignatura a profesor");
+		System.out.println("3. Ver informacion de una asignatura");
+		System.out.println("4. Regresar");
+		System.out.print("Ingrese una opcion: ");
+		opcionString = input.next();
+		System.out.println("");
+		
+		return opcionString;
+	}
+	
+	public String gestionarAlumnosDirector() {
+		String opcionString = "";
+		
+		System.out.println("1. Crear nueva alumno");
+		System.out.println("2. Asignar alumno a asignatura");
+		System.out.println("3. Ver informacion de un alumno");
+		System.out.println("4. Regresar");
+		System.out.print("Ingrese una opcion: ");
+		opcionString = input.next();
+		System.out.println("");
+		
+		return opcionString;
 	}
 	
 	public void gestionarAsignaturasProfesor() {
@@ -147,6 +178,20 @@ public class ConsolePrint {
 		System.out.println("Error al obtener profesores en campus, intente de nuevo o cree un profesor");
 		System.out.println("");
 		System.out.println("1. Crear profesor");
+		System.out.println("2. Regresar");
+		System.out.print("Ingrese una opcion: ");
+		opcionString = input.next();
+		System.out.println("");
+		
+		return opcionString;
+	}
+	
+	public String errorAsignaturasEnCampusVacio() {
+		String opcionString = "";
+		
+		System.out.println("Error al obtener asignaturas en campus, intente de nuevo o cree una asignatura");
+		System.out.println("");
+		System.out.println("1. Crear asignatura");
 		System.out.println("2. Regresar");
 		System.out.print("Ingrese una opcion: ");
 		opcionString = input.next();

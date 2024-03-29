@@ -19,7 +19,7 @@ public class Modelo {
 	private final static String DIRECTOR_PROFESORES_JSON_FILE="director-profesores.json";
 	
 	//Create
-	public Boolean writeProfesor(User user, DirectorProfesores directorProfesores) {
+	public Boolean writeProfesor(User user, Director director) {
 		List<User> users = readProfesorsFromJson();
 		
 		for (User existingUser : users) {
@@ -29,7 +29,7 @@ public class Modelo {
 	    }
 		
 		users.add(user);
-		directorProfesores.addProfesor(user.getUsuario());
+		director.addProfesor(user.getUsuario());
 
 		Gson prettyGson = new GsonBuilder().setPrettyPrinting().create();
 
@@ -40,91 +40,6 @@ public class Modelo {
 		}
 		return true;
 	}
-	/*public void writeSession(Session ses) {
-		List<Session> sesions = readSessionsFromJson();
-		
-		sesions.add(ses);
-
-		Gson prettyGson = new GsonBuilder().setPrettyPrinting().create();
-
-		try(FileWriter writer = new FileWriter(SESSION_JSON_FILE)){
-			prettyGson.toJson(sesions, writer);
-		} catch (IOException e) {
-		    e.printStackTrace();
-		}
-	}
-	public void writeDoctor(Doctor doc) {
-		List<Doctor> doctors = readDoctorsFromJson();
-		
-		doctors.add(doc);
-
-		Gson prettyGson = new GsonBuilder().setPrettyPrinting().create();
-
-		try(FileWriter writer = new FileWriter(DOCTOR_JSON_FILE)){
-			prettyGson.toJson(doctors, writer);
-		} catch (IOException e) {
-		    e.printStackTrace();
-		}
-	}
-	public void writePatient(Patient pat) {
-		List<Patient> patients = readPatientsFromJson();
-		
-		patients.add(pat);
-
-		Gson prettyGson = new GsonBuilder().setPrettyPrinting().create();
-
-		try(FileWriter writer = new FileWriter(PATIENT_JSON_FILE)){
-			prettyGson.toJson(patients, writer);
-		} catch (IOException e) {
-		    e.printStackTrace();
-		}
-	}
-	public void writeFamily(Family fam) {
-		List<Family> families = readFamilyFromJson();
-		
-		families.add(fam);
-
-		Gson prettyGson = new GsonBuilder().setPrettyPrinting().create();
-
-		try(FileWriter writer = new FileWriter(FAMILY_JSON_FILE)){
-			prettyGson.toJson(families, writer);
-		} catch (IOException e) {
-		    e.printStackTrace();
-		}
-	}
-	public void writeAlarma(AlarmaUsuario usuAlarma) {
-		List<AlarmaUsuario> alarmas = readTimerFromJson();
-		
-		alarmas.add(usuAlarma);
-		
-		for (AlarmaUsuario alarmaUsuario : alarmas) {
-			if(alarmaUsuario.getUsuario().equals(usuAlarma.getUsuario())){
-				modifyAlarmaUsuario(alarmaUsuario, usuAlarma);
-			}
-		}
-
-		Gson prettyGson = new GsonBuilder().setPrettyPrinting().create();
-
-		try(FileWriter writer = new FileWriter(TIMERS_JSON_FILE)){
-			prettyGson.toJson(alarmas, writer);
-		} catch (IOException e) {
-		    e.printStackTrace();
-		}
-	}
-	public void writeStats(UserStats stat) {
-		List<UserStats> stats = readStatsFromJson();
-		
-		stats.add(stat);
-
-		Gson prettyGson = new GsonBuilder().setPrettyPrinting().create();
-
-		try(FileWriter writer = new FileWriter(USER_STATS_JSON_FILE)){
-			prettyGson.toJson(stats, writer);
-		} catch (IOException e) {
-		    e.printStackTrace();
-		}
-	}
-	*/
 	
 	//Get All
 	public List<User> readDirectorsFromJson() {
@@ -166,12 +81,12 @@ public class Modelo {
 		
 		return students;
 	}
-	public List<DirectorProfesores> readDirectorProfesorsFromJson() {
-		List<DirectorProfesores> directorProfesors = new ArrayList<>();
+	public List<Director> readDirectorFromJson() {
+		List<Director> directorProfesors = new ArrayList<>();
 		
 		try (Reader reader = new FileReader(DIRECTOR_PROFESORES_JSON_FILE)){
 			Gson gson = new Gson();
-			Type tipoListaDirectorProfesores = new TypeToken<List<DirectorProfesores>>(){}.getType();
+			Type tipoListaDirectorProfesores = new TypeToken<List<Director>>(){}.getType();
 			directorProfesors = gson.fromJson(reader, tipoListaDirectorProfesores);
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -205,62 +120,20 @@ public class Modelo {
 		}
 		return false;
 	}
-		
-		
 	
 	//Get One
-	public DirectorProfesores getDirectorProfesoresByDirectorUsername(String usernameDirector) {
-		for (DirectorProfesores dp: readDirectorProfesorsFromJson()) {
+	public Director getDirectorByDirectorUsername(String usernameDirector) {
+		for (Director dp: readDirectorFromJson()) {
 			if (dp.getUsuarioDirector().equals(usernameDirector)) {
 				return dp;
 			}
 		}
 		return null;
 	}
-	/*public Doctor getDoctorByUsername(String usrname) {
-		for (Doctor doctor: readDoctorsFromJson()) {
-			if (doctor.getUsuario()==1) {
-				return doctor;
-			}
-		}
-		return null;
-	}/*
-	public Patient getPatientByUsername(String usrname) {
-		for (Patient patient: readPatientsFromJson()) {
-			if (patient.getUsuario().equals(usrname)) {
-				return patient;
-			}
-		}
-		return null;
-	}
-	public Family getFamilyByUsername(String usrname) {
-		for (Family family: readFamilyFromJson()) {
-			if (family.getUsuario().equals(usrname)) {
-				return family;
-			}
-		}
-		return null;
-	}
-	public AlarmaUsuario getTimerByUsername(String usrname) {
-		for (AlarmaUsuario alarmaUsuario: readTimerFromJson()) {
-			if (alarmaUsuario.getUsuario().equals(usrname)) {
-				return alarmaUsuario;
-			}
-		}
-		return null;
-	}
-	public UserStats getStatsByUsername(String usrname) {
-		for (UserStats userStats: readStatsFromJson()) {
-			if (userStats.getUser().equals(usrname)) {
-				return userStats;
-			}
-		}
-		return null;
-	}*/
-	
+		
 	//Update
-	public void modifyDirectorProfesores(DirectorProfesores directorProfesoresNuevo) {
-		List<DirectorProfesores> directoresProfesores = readDirectorProfesorsFromJson();
+	public void modifyDirectorProfesores(Director directorProfesoresNuevo) {
+		List<Director> directoresProfesores = readDirectorFromJson();
 		directoresProfesores.removeIf(dp -> dp.getUsuarioDirector().equals(directorProfesoresNuevo.getUsuarioDirector()));
 		directoresProfesores.add(directorProfesoresNuevo);
 
@@ -272,48 +145,9 @@ public class Modelo {
 		    e.printStackTrace();
 		}
 	}
-	/*public void modifyDoctor(Doctor doctorOriginal, Doctor doctorChanged) {
-		List<Doctor> doctors = readDoctorsFromJson();
-		doctors.removeIf(d -> d.getUsuario()== doctorOriginal.getUsuario());
-		doctors.add(doctorChanged);
-
-		Gson prettyGson = new GsonBuilder().setPrettyPrinting().create();
-
-		try(FileWriter writer = new FileWriter(DOCTOR_JSON_FILE)){
-			prettyGson.toJson(doctors, writer);
-		} catch (IOException e) {
-		    e.printStackTrace();
-		}
-	}/*
-	public void modifyPatient(Patient patientOriginal, Patient patientChanged) {
-		List<Patient> patients = readPatientsFromJson();
-		patients.removeIf(p -> p.getUsuario().equals(patientOriginal.getUsuario()));
-		patients.add(patientChanged);
-
-		Gson prettyGson = new GsonBuilder().setPrettyPrinting().create();
-
-		try(FileWriter writer = new FileWriter(PATIENT_JSON_FILE)){
-			prettyGson.toJson(patients, writer);
-		} catch (IOException e) {
-		    e.printStackTrace();
-		}
-	}
-	public void modifyAlarmaUsuario(AlarmaUsuario alarmaUsuarioOriginal, AlarmaUsuario alarmaUsuarioChanged) {
-		List<AlarmaUsuario> alarmasUsuario = readTimerFromJson();
-		alarmasUsuario.removeIf(a -> a.getUsuario().equals(alarmaUsuarioOriginal.getUsuario()));
-		alarmasUsuario.add(alarmaUsuarioChanged);
-
-		Gson prettyGson = new GsonBuilder().setPrettyPrinting().create();
-
-		try(FileWriter writer = new FileWriter(TIMERS_JSON_FILE)){
-			prettyGson.toJson(alarmasUsuario, writer);
-		} catch (IOException e) {
-		    e.printStackTrace();
-		}
-	}
-	
+		
 	//Delete
-	public void deleteSession(String pcName) {
+	/*public void deleteSession(String pcName) {
 		List<Session> sesions = readSessionsFromJson();
 		sesions.removeIf(s -> s.getNamePc().equals(pcName));
 
