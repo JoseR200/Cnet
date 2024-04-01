@@ -29,10 +29,9 @@ public class MenuInicioSesion {
 				if (opcionDirector == 1) {
 					menuDirector.gestionarProfesores(credenciales[0]);
 				} else if (opcionDirector == 2) {
-					//TO DO
 					menuDirector.gestionarAsignaturas(credenciales[0]);
 				} else if (opcionDirector == 3) {
-					//TO DO
+					//TODO no se ha empezdo
 					menuDirector.gestionarAlumnos();
 				} else if (opcionDirector == 4) {
 					continue;
@@ -61,10 +60,10 @@ public class MenuInicioSesion {
 				}
 				
 				if (opcionProfesor == 1) {
-					//TO DO
+					//TODO falta hacer todo
 					menuProfesor.gestionarPerfil();
 				} else if (opcionProfesor == 2) {
-					//TO DO
+					//TODO falta hacer todo
 					menuProfesor.gestionarAsignaturas(credenciales[0]);
 				} else if (opcionProfesor == 3) {
 					continue;
@@ -93,7 +92,7 @@ public class MenuInicioSesion {
 				}
 				
 				if (opcionAlumno == 1) {
-					//TO DO
+					//TODO falta hacer todo
 					menuAlumno.gestionarAsignaturas(credenciales[0]);
 				} else if (opcionAlumno == 2) {
 					continue;

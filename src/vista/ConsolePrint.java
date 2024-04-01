@@ -3,7 +3,8 @@ package vista;
 import java.util.List;
 import java.util.Scanner;
 
-import modelos.User;
+import modelos.Asignatura;
+import modelos.Profesor;
 
 public class ConsolePrint {
 	private Scanner input = new Scanner(System.in);
@@ -22,7 +23,7 @@ public class ConsolePrint {
 		System.out.println("3. Ingresar como Alumno");
 		System.out.println("4. Salir");
 		System.out.print("Ingrese una opcion: ");
-		opcionString = input.next();
+		opcionString = input.nextLine();
 		System.out.println("");
 		
 		return opcionString;
@@ -43,9 +44,9 @@ public class ConsolePrint {
 		
 		System.out.println("Ingrese su usuario, presione ENTER y luego ingrese su contraseña");
 		System.out.print("Usuario: ");
-		usuario = input.next();
+		usuario = input.nextLine();
 		System.out.print("Contraseña: ");
-		contraseña = input.next();
+		contraseña = input.nextLine();
 		System.out.println("");
 		
 		return new String[] {usuario, contraseña};
@@ -79,7 +80,7 @@ public class ConsolePrint {
 		System.out.println("3. Gestionar Alumnos");
 		System.out.println("4. Cerrar sesion");
 		System.out.print("Ingrese una opcion: ");
-		opcionString = input.next();
+		opcionString = input.nextLine();
 		System.out.println("");
 		
 		return opcionString;
@@ -92,7 +93,7 @@ public class ConsolePrint {
 		System.out.println("2. Gestionar asignaturas");
 		System.out.println("3. Cerrar sesion");
 		System.out.print("Ingrese una opcion: ");
-		opcionString = input.next();
+		opcionString = input.nextLine();
 		System.out.println("");
 		
 		return opcionString;
@@ -104,7 +105,7 @@ public class ConsolePrint {
 		System.out.println("1. Gestionar asignaturas");
 		System.out.println("2. Cerrar sesion");
 		System.out.print("Ingrese una opcion: ");
-		opcionString = input.next();
+		opcionString = input.nextLine();
 		System.out.println("");
 		
 		return opcionString;
@@ -114,8 +115,8 @@ public class ConsolePrint {
 		String opcionString = "";
 		
 		System.out.println("Aqui estan los profesores que estan en el campus:");
-		for (String p: profesores) {
-			System.out.println(p);
+		for (int i = 0; i < profesores.size(); i++) {
+		    System.out.println(i + ". " + profesores.get(i));
 		}
 		System.out.println("");
 		System.out.println("1. Crear nuevo profesor");
@@ -123,7 +124,7 @@ public class ConsolePrint {
 		System.out.println("3. Ver informacion de un profesor");
 		System.out.println("4. Regresar");
 		System.out.print("Ingrese una opcion: ");
-		opcionString = input.next();
+		opcionString = input.nextLine();
 		System.out.println("");
 		
 		return opcionString;
@@ -133,8 +134,8 @@ public class ConsolePrint {
 		String opcionString = "";
 		
 		System.out.println("Aqui estan las asignaturas que se imparten en el campus");
-		for (String a: asignaturas) {
-			System.out.println(a);
+		for (int i = 0; i < asignaturas.size(); i++) {
+		    System.out.println(i + ". " + asignaturas.get(i));
 		}
 		System.out.println("");
 		System.out.println("1. Crear nueva asignatura");
@@ -142,7 +143,7 @@ public class ConsolePrint {
 		System.out.println("3. Ver informacion de una asignatura");
 		System.out.println("4. Regresar");
 		System.out.print("Ingrese una opcion: ");
-		opcionString = input.next();
+		opcionString = input.nextLine();
 		System.out.println("");
 		
 		return opcionString;
@@ -156,7 +157,7 @@ public class ConsolePrint {
 		System.out.println("3. Ver informacion de un alumno");
 		System.out.println("4. Regresar");
 		System.out.print("Ingrese una opcion: ");
-		opcionString = input.next();
+		opcionString = input.nextLine();
 		System.out.println("");
 		
 		return opcionString;
@@ -180,7 +181,7 @@ public class ConsolePrint {
 		System.out.println("1. Crear profesor");
 		System.out.println("2. Regresar");
 		System.out.print("Ingrese una opcion: ");
-		opcionString = input.next();
+		opcionString = input.nextLine();
 		System.out.println("");
 		
 		return opcionString;
@@ -194,43 +195,77 @@ public class ConsolePrint {
 		System.out.println("1. Crear asignatura");
 		System.out.println("2. Regresar");
 		System.out.print("Ingrese una opcion: ");
-		opcionString = input.next();
+		opcionString = input.nextLine();
 		System.out.println("");
 		
 		return opcionString;
 	}
 	
-	public User crearProfe() {
-		User usuarioProfesor = new User();
+	public Profesor crearProfe() {
+		Profesor profesor = new Profesor();
 		
 		System.out.println("Ingrese informacion de profe");
 		System.out.print("Ingrese nombre: ");
-		usuarioProfesor.setNombre(input.next());
+		profesor.setNombre(input.nextLine());
 		System.out.print("Ingrese apellido: ");
-		usuarioProfesor.setApellido(input.next());
+		profesor.setApellido(input.nextLine());
 		System.out.print("Ingrese usuario para ingresar a la aplicacion: ");
-		usuarioProfesor.setUsuario(input.next());
+		profesor.setUsuario(input.nextLine());
 		System.out.print("Ingrese contraseña: ");
-		usuarioProfesor.setContraseña(input.next());
+		profesor.setContraseña(input.nextLine());
 		System.out.print("Ingrese dni: ");
-		usuarioProfesor.setDni(input.next());
+		profesor.setDni(input.nextLine());
 		System.out.println("");
 		
-		return usuarioProfesor;
+		return profesor;
 	}
 	
-	public void verProfe() {
-		System.out.println("Ver informacion de profe");
+	public String ingresarIndiceProfe() {
+		String opcionProfesor = "";
+		
+		System.out.print("Ingrese el numero de orden del profesor: ");
+		opcionProfesor = input.nextLine();
+		System.out.println("");
+		
+		return opcionProfesor;
+	}
+	
+	public void verProfe(Profesor profesor) {
+		System.out.println("Informacion de profesor");
+		System.out.println("Nombre: " + profesor.getNombre());
+		System.out.println("Apellido: " + profesor.getApellido());
+		System.out.println("Usuario: " + profesor.getUsuario());
+		System.out.println("Dni: " + profesor.getDni());
+		System.out.println("");
+		
+		if (profesor.getAsignaturas().size() > 0) {
+			System.out.println("Aqui estan las asignaturas que el profesor imparte");
+			for (String a: profesor.getAsignaturas()) {
+				System.out.println(a);
+			}
+		} else {
+			System.out.println("Este profesor no tiene asignaturas");
+		}
 		System.out.println("");
 	}
 	
 	public String despedirProfe() {
 		String deleteProfeUser = "";
 		System.out.print("Ingrese el usuario del profeso a despedir: ");
-		deleteProfeUser = input.next();
+		deleteProfeUser = input.nextLine();
 		System.out.println("");
 		
 		return deleteProfeUser;
+	}
+	
+	public String reemplazoDeProfe() {
+		String reemplazoProfeUser = "";
+		System.out.println("El profesor a despedir cuenta con asignaturas");
+		System.out.print("Ingrese el usuario del profeso que reemplazara al despedido: ");
+		reemplazoProfeUser = input.nextLine();
+		System.out.println("");
+		
+		return reemplazoProfeUser;
 	}
 	
 	public void profesorCreado() {
@@ -250,6 +285,80 @@ public class ConsolePrint {
 	
 	public void errorEliminarProfesor() {
 		System.out.println("Error al eliminar profesor, no existe uno con los datos proporcionados, intente de nuevo");
+		System.out.println("");
+	}
+	
+	public Asignatura crearAsignatura() {
+		Asignatura asignatura = new Asignatura();
+		
+		System.out.println("Ingrese informacion de asignatura");
+		System.out.print("Ingrese nombre de asignatura: ");
+		asignatura.setNombre(input.nextLine());
+		System.out.println(asignatura.getNombre());
+		System.out.println("");
+		
+		return asignatura;
+	}
+	
+	public void asignaturaCreado() {
+		System.out.println("Asignatura creada exitosamente");
+		System.out.println("");
+	}
+	
+	public void errorCrearAsignatura() {
+		System.out.println("Error al crear asignatura, uno existente con los mismos datos, intente de nuevo");
+		System.out.println("");
+	}
+	
+	public String[] asignarProfesorAsignatura() {
+		String usuarioProfesor = "";
+		String nombreAsignatura = "";
+		
+		System.out.println("Ingrese el usuario del profesor y luego el  nombre de la asignatura");
+		System.out.print("Usuario: ");
+		usuarioProfesor = input.nextLine();
+		System.out.print("Asignatura: ");
+		nombreAsignatura = input.nextLine();
+		System.out.println("");
+		
+		return new String[] {usuarioProfesor, nombreAsignatura};
+	}
+	
+	public void profesorAsignado() {
+		System.out.println("Profesor asignado a asignatura exitosamente");
+		System.out.println("");
+	}
+	
+	public void errorAsignarProfe() {
+		System.out.println("Error al asignar profesor a asignatura, intente de nuevo");
+		System.out.println("Puede deberse a que no existe el profesor, no existe la asignatura o la asignatura ya cuenta con profesor");
+		System.out.println("");
+	}
+	
+	public String ingresarIndiceAsignatura() {
+		String opcionAsignatura = "";
+		
+		System.out.print("Ingrese el numero de orden de la asignatura: ");
+		opcionAsignatura = input.nextLine();
+		System.out.println("");
+		
+		return opcionAsignatura;
+	}
+	
+	public void verAsignatura(Asignatura asignatura) {
+		System.out.println("Informacion de asignatura");
+		System.out.println("Nombre: " + asignatura.getNombre());
+		System.out.println("Profesor: " + asignatura.getUserProfesor());
+		System.out.println("");
+		
+		if (asignatura.getAlumnos().size() > 0) {
+			System.out.println("Aqui estan los alumnos que estan llevando esta asignatura");
+			for (String a: asignatura.getAlumnos()) {
+				System.out.println(a);
+			}
+		} else {
+			System.out.println("Esta asignatura no tiene alumnos matriculados");
+		}
 		System.out.println("");
 	}
 }

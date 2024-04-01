@@ -4,6 +4,8 @@
     "apellido": "Albujar",
     "usuario": "MelAlbujar",
     "contraseña": "123123",
-    "dni": "BBB"
+    "dni": "BBB",
+    "asignaturas": [
+    ]
   }
 ]

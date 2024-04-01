@@ -16,25 +16,46 @@ public class Modelo {
 	private final static String DIRECTOR_JSON_FILE="director.json";
 	private final static String PROFESOR_JSON_FILE="profesor.json";
 	private final static String ALUMNO_JSON_FILE="alumno.json";
-	private final static String DIRECTOR_PROFESORES_JSON_FILE="director-profesores.json";
+	private final static String ASIGNATURA_JSON_FILE="asignatura.json";
 	
 	//Create
-	public Boolean writeProfesor(User user, Director director) {
-		List<User> users = readProfesorsFromJson();
+	public Boolean writeProfesor(Profesor profesor, Director director) {
+		List<Profesor> profesores = readProfesorFromJson();
 		
-		for (User existingUser : users) {
-			if (existingUser.getUsuario().equals(user.getUsuario()) || existingUser.getDni().equals(user.getDni())) {
+		for (Profesor existingProfesor : profesores) {
+			if (existingProfesor.getUsuario().equals(profesor.getUsuario()) || existingProfesor.getDni().equals(profesor.getDni())) {
 				return false;
 	        }
 	    }
 		
-		users.add(user);
-		director.addProfesor(user.getUsuario());
+		profesores.add(profesor);
+		director.addProfesor(profesor.getUsuario());
 
 		Gson prettyGson = new GsonBuilder().setPrettyPrinting().create();
 
 		try(FileWriter writer = new FileWriter(PROFESOR_JSON_FILE)){
-			prettyGson.toJson(users, writer);
+			prettyGson.toJson(profesores, writer);
+		} catch (IOException e) {
+		    e.printStackTrace();
+		}
+		return true;
+	}
+	public Boolean writeAsignatura(Asignatura asignatura, Director director) {
+		List<Asignatura> asignaturas = readAsignaturasFromJson();
+		
+		for (Asignatura existingAsignatura : asignaturas) {
+			if (existingAsignatura.getNombre().equals(asignatura.getNombre())) {
+				return false;
+	        }
+	    }
+		
+		asignaturas.add(asignatura);
+		director.addAsignatura(asignatura.getNombre());
+
+		Gson prettyGson = new GsonBuilder().setPrettyPrinting().create();
+
+		try(FileWriter writer = new FileWriter(ASIGNATURA_JSON_FILE)){
+			prettyGson.toJson(asignaturas, writer);
 		} catch (IOException e) {
 		    e.printStackTrace();
 		}
@@ -42,79 +63,79 @@ public class Modelo {
 	}
 	
 	//Get All
-	public List<User> readDirectorsFromJson() {
-		List<User> directors = new ArrayList<>();
+	public List<Director> readDirectorFromJson() {
+		List<Director> director = new ArrayList<>();
 		
 		try (Reader reader = new FileReader(DIRECTOR_JSON_FILE)){
 			Gson gson = new Gson();
-			Type tipoListaDirectores = new TypeToken<List<User>>(){}.getType();
-			directors = gson.fromJson(reader, tipoListaDirectores);
+			Type tipoListaDirector = new TypeToken<List<Director>>(){}.getType();
+			director = gson.fromJson(reader, tipoListaDirector);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
-		return directors;
+		return director;
 	}
-	public List<User> readProfesorsFromJson() {
-		List<User> profesors = new ArrayList<>();
+	public List<Profesor> readProfesorFromJson() {
+		List<Profesor> profesor = new ArrayList<>();
 		
 		try (Reader reader = new FileReader(PROFESOR_JSON_FILE)){
 			Gson gson = new Gson();
-			Type tipoListaProfesores= new TypeToken<List<User>>(){}.getType();
-			profesors = gson.fromJson(reader, tipoListaProfesores);
+			Type tipoListaProfesor = new TypeToken<List<Profesor>>(){}.getType();
+			profesor = gson.fromJson(reader, tipoListaProfesor);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
-		return profesors;
+		return profesor;
 	}
-	public List<User> readStudentsFromJson() {
-		List<User> students = new ArrayList<>();
+	public List<Alumno> readAlumnosFromJson() {
+		List<Alumno> alumnos = new ArrayList<>();
 		
 		try (Reader reader = new FileReader(ALUMNO_JSON_FILE)){
 			Gson gson = new Gson();
-			Type tipoListaAlumnos = new TypeToken<List<User>>(){}.getType();
-			students = gson.fromJson(reader, tipoListaAlumnos);
+			Type tipoListaAlumnos = new TypeToken<List<Alumno>>(){}.getType();
+			alumnos = gson.fromJson(reader, tipoListaAlumnos);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
-		return students;
+		return alumnos;
 	}
-	public List<Director> readDirectorFromJson() {
-		List<Director> directorProfesors = new ArrayList<>();
+	public List<Asignatura> readAsignaturasFromJson() {
+		List<Asignatura> asignaturas = new ArrayList<>();
 		
-		try (Reader reader = new FileReader(DIRECTOR_PROFESORES_JSON_FILE)){
+		try (Reader reader = new FileReader(ASIGNATURA_JSON_FILE)){
 			Gson gson = new Gson();
-			Type tipoListaDirectorProfesores = new TypeToken<List<Director>>(){}.getType();
-			directorProfesors = gson.fromJson(reader, tipoListaDirectorProfesores);
+			Type tipoListaAsignaturas = new TypeToken<List<Asignatura>>(){}.getType();
+			asignaturas = gson.fromJson(reader, tipoListaAsignaturas);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
-		return directorProfesors;
+		return asignaturas;
 	}
 	
 	//Login
 	public boolean loginDirector(String[] userCredentials) {
-		for (User usr: readDirectorsFromJson()) {
-			if (usr.getUsuario().equals(userCredentials[0]) && usr.getContraseña().equals(userCredentials[1])) {
+		for (Director dir: readDirectorFromJson()) {
+			if (dir.getUsuario().equals(userCredentials[0]) && dir.getContraseña().equals(userCredentials[1])) {
 				return true;
 			}
 		}
 		return false;
 	}
 	public boolean loginProfesor(String[] userCredentials) {
-		for (User usr: readProfesorsFromJson()) {
-			if (usr.getUsuario().equals(userCredentials[0]) && usr.getContraseña().equals(userCredentials[1])) {
+		for (Profesor pro: readProfesorFromJson()) {
+			if (pro.getUsuario().equals(userCredentials[0]) && pro.getContraseña().equals(userCredentials[1])) {
 				return true;
 			}
 		}
 		return false;
 	}
 	public boolean loginAlumno(String[] userCredentials) {
-		for (User usr: readStudentsFromJson()) {
-			if (usr.getUsuario().equals(userCredentials[0]) && usr.getContraseña().equals(userCredentials[1])) {
+		for (Alumno al: readAlumnosFromJson()) {
+			if (al.getUsuario().equals(userCredentials[0]) && al.getContraseña().equals(userCredentials[1])) {
 				return true;
 			}
 		}
@@ -124,33 +145,75 @@ public class Modelo {
 	//Get One
 	public Director getDirectorByDirectorUsername(String usernameDirector) {
 		for (Director dp: readDirectorFromJson()) {
-			if (dp.getUsuarioDirector().equals(usernameDirector)) {
+			if (dp.getUsuario().equals(usernameDirector)) {
 				return dp;
+			}
+		}
+		return null;
+	}
+	public Profesor getProfesorByProfesorUsername(String usernameProfesor) {
+		for (Profesor pa: readProfesorFromJson()) {
+			if (pa.getUsuario().equals(usernameProfesor)) {
+				return pa;
+			}
+		}
+		return null;
+	}
+	public Asignatura getAsignaturaByAsignaturaName(String asignaturaName) {
+		for (Asignatura a: readAsignaturasFromJson()) {
+			if (a.getNombre().equals(asignaturaName)) {
+				return a;
 			}
 		}
 		return null;
 	}
 		
 	//Update
-	public void modifyDirectorProfesores(Director directorProfesoresNuevo) {
-		List<Director> directoresProfesores = readDirectorFromJson();
-		directoresProfesores.removeIf(dp -> dp.getUsuarioDirector().equals(directorProfesoresNuevo.getUsuarioDirector()));
-		directoresProfesores.add(directorProfesoresNuevo);
+	public void modifyDirector(Director directorNuevo) {
+		List<Director> directores = readDirectorFromJson();
+		directores.removeIf(dp -> dp.getUsuario().equals(directorNuevo.getUsuario()));
+		directores.add(directorNuevo);
 
 		Gson prettyGson = new GsonBuilder().setPrettyPrinting().create();
 
-		try(FileWriter writer = new FileWriter(DIRECTOR_PROFESORES_JSON_FILE)){
-			prettyGson.toJson(directoresProfesores, writer);
+		try(FileWriter writer = new FileWriter(DIRECTOR_JSON_FILE)){
+			prettyGson.toJson(directores, writer);
+		} catch (IOException e) {
+		    e.printStackTrace();
+		}
+	}
+	public void modifyProfesor(Profesor profesorNuevo) {
+		List<Profesor> profesores = readProfesorFromJson();
+		profesores.removeIf(p -> p.getUsuario().equals(profesorNuevo.getUsuario()));
+		profesores.add(profesorNuevo);
+
+		Gson prettyGson = new GsonBuilder().setPrettyPrinting().create();
+
+		try(FileWriter writer = new FileWriter(PROFESOR_JSON_FILE)){
+			prettyGson.toJson(profesores, writer);
+		} catch (IOException e) {
+		    e.printStackTrace();
+		}
+	}
+	public void modifyAsignatura(Asignatura asignaturaNuevo) {
+		List<Asignatura> asignaturas = readAsignaturasFromJson();
+		asignaturas.removeIf(a -> a.getNombre().equals(asignaturaNuevo.getNombre()));
+		asignaturas.add(asignaturaNuevo);
+
+		Gson prettyGson = new GsonBuilder().setPrettyPrinting().create();
+
+		try(FileWriter writer = new FileWriter(ASIGNATURA_JSON_FILE)){
+			prettyGson.toJson(asignaturas, writer);
 		} catch (IOException e) {
 		    e.printStackTrace();
 		}
 	}
 		
 	//Delete
-	public Boolean deleteProfesor(String userProfesor, Director director) {
-		List<User> profesores = readProfesorsFromJson();
-		Boolean eliminado = profesores.removeIf(p -> p.getUsuario().equals(userProfesor));
+	public void deleteProfesor(String userProfesor, Director director) {
+		List<Profesor> profesores = readProfesorFromJson();
 		
+		profesores.removeIf(p -> p.getUsuario().equals(userProfesor));
 		director.deleteProfesor(userProfesor);
 
 		Gson prettyGson = new GsonBuilder().setPrettyPrinting().create();
@@ -160,7 +223,48 @@ public class Modelo {
 		} catch (IOException e) {
 		    e.printStackTrace();
 		}
+	}
+	
+	//Verifier
+	public Boolean existeProfesorExisteAsignatura(String profesor, String asignatura) {
+		Boolean condicionProfe = false;
+		Boolean condicionAsignatura = false;
 		
-		return eliminado;
+		for (Profesor pro: readProfesorFromJson()) {
+			if (pro.getUsuario().equals(profesor)) {
+				condicionProfe = true;
+			}
+		}
+		for (Asignatura asg: readAsignaturasFromJson()) {
+			if (asg.getNombre().equals(asignatura) && asg.getUserProfesor().equals("No profesor")) {
+				condicionAsignatura = true;
+			}
+		}
+		
+		return condicionProfe && condicionAsignatura;
+	}
+	public Boolean profesorTieneAsignatura(String profesor) {
+		Boolean condicionProfe = false;
+		
+		for (Profesor pro: readProfesorFromJson()) {
+			if (pro.getUsuario().equals(profesor)) {
+				if (pro.getAsignaturas().size() > 0) {
+					condicionProfe =  true;
+				}
+			}
+		}
+		
+		return condicionProfe;
+	}
+	public Boolean existeProfesor(String profesor) {
+		Boolean condicionProfe = false;
+		
+		for (Profesor pro: readProfesorFromJson()) {
+			if (pro.getUsuario().equals(profesor)) {
+				condicionProfe =  true;
+			}
+		}
+		
+		return condicionProfe;
 	}
 }

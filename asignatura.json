@@ -1,0 +1,17 @@
+[
+  {
+    "nombre": "Matematica I",
+    "userProfesor": "No profesor",
+    "alumnos": []
+  },
+  {
+    "nombre": "Fisica IIII",
+    "userProfesor": "No profesor",
+    "alumnos": []
+  },
+  {
+    "nombre": "Programacion I",
+    "userProfesor": "No profesor",
+    "alumnos": []
+  }
+]
