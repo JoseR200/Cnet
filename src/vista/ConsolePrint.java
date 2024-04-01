@@ -224,6 +224,15 @@ public class ConsolePrint {
 		System.out.println("");
 	}
 	
+	public String despedirProfe() {
+		String deleteProfeUser = "";
+		System.out.print("Ingrese el usuario del profeso a despedir: ");
+		deleteProfeUser = input.next();
+		System.out.println("");
+		
+		return deleteProfeUser;
+	}
+	
 	public void profesorCreado() {
 		System.out.println("Profesor creado exitosamente");
 		System.out.println("");
@@ -231,6 +240,16 @@ public class ConsolePrint {
 	
 	public void errorCrearProfesor() {
 		System.out.println("Error al crear profesor, uno existente con los mismos datos, intente de nuevo");
+		System.out.println("");
+	}
+	
+	public void profesorEliminado() {
+		System.out.println("Profesor eliminado exitosamente");
+		System.out.println("");
+	}
+	
+	public void errorEliminarProfesor() {
+		System.out.println("Error al eliminar profesor, no existe uno con los datos proporcionados, intente de nuevo");
 		System.out.println("");
 	}
 }

@@ -147,16 +147,20 @@ public class Modelo {
 	}
 		
 	//Delete
-	/*public void deleteSession(String pcName) {
-		List<Session> sesions = readSessionsFromJson();
-		sesions.removeIf(s -> s.getNamePc().equals(pcName));
+	public Boolean deleteProfesor(String userProfesor, Director director) {
+		List<User> profesores = readProfesorsFromJson();
+		Boolean eliminado = profesores.removeIf(p -> p.getUsuario().equals(userProfesor));
+		
+		director.deleteProfesor(userProfesor);
 
 		Gson prettyGson = new GsonBuilder().setPrettyPrinting().create();
 
-		try(FileWriter writer = new FileWriter(SESSION_JSON_FILE)){
-			prettyGson.toJson(sesions, writer);
+		try(FileWriter writer = new FileWriter(PROFESOR_JSON_FILE)){
+			prettyGson.toJson(profesores, writer);
 		} catch (IOException e) {
 		    e.printStackTrace();
 		}
-	}*/
+		
+		return eliminado;
+	}
 }

@@ -27,6 +27,9 @@ public class Director {
 	public void addProfesor(String profesor) {
     	this.profesores.add(profesor);
     }
+	public void deleteProfesor(String profesor) {
+    	this.profesores.remove(profesor);
+    }
 	
 	public List<String> getAsignaturas() {
 		return asignaturas;

@@ -16,8 +16,13 @@ public class GestionarProfesores {
 		}
 	}
 	
-	public void despedirProfesor() {
-		
+	public void despedirProfesor(Director director) {
+		if (modelo.deleteProfesor(consolePrint.despedirProfe(), director)) {
+			modelo.modifyDirectorProfesores(director);
+			consolePrint.profesorEliminado();
+		} else {
+			consolePrint.errorEliminarProfesor();
+		}
 	}
 	
 	public void obtenerProfesor() {

@@ -45,7 +45,7 @@ public class MenuDirector {
 					gestionarProfesores.crearProfesor(director);
 				} else if (opcionDirectorProfesores == 2) {
 					//TO DO
-					gestionarProfesores.despedirProfesor();
+					gestionarProfesores.despedirProfesor(director);
 				} else if (opcionDirectorProfesores == 3) {
 					//TO DO
 					gestionarProfesores.obtenerProfesor();
