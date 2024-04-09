@@ -6,20 +6,19 @@ import modelos.Modelo;
 import modelos.Profesor;
 
 public class GestionarAsignaturas {
-	ConsolePrint consolePrint = new ConsolePrint();
 	Modelo modelo = new Modelo();
 	
 	public void crearAsignatura(Director director) {
-		if (modelo.writeAsignatura(consolePrint.crearAsignatura(), director)) {
+		if (modelo.writeAsignatura(ConsolePrint.crearAsignatura(), director)) {
 			modelo.modifyDirector(director);
-			consolePrint.asignaturaCreado();
+			ConsolePrint.asignaturaCreado();
 		} else {
-			consolePrint.errorCrearAsignatura();
+			ConsolePrint.errorCrearAsignatura();
 		}
 	}
 	
 	public void asignarProfeAsignatura() {
-		String[] profesorAsignatura = consolePrint.asignarProfesorAsignatura();
+		String[] profesorAsignatura = ConsolePrint.asignarProfesorAsignatura();
 		if (modelo.existeProfesorExisteAsignatura(profesorAsignatura[0], profesorAsignatura[1])) {
 			Profesor profesor = modelo.getProfesorByProfesorUsername(profesorAsignatura[0]);
 			profesor.addAsignatura(profesorAsignatura[1]);
@@ -30,9 +29,9 @@ public class GestionarAsignaturas {
 			modelo.modifyProfesor(profesor);
 			modelo.modifyAsignatura(asignatura);
 			
-			consolePrint.profesorAsignado();
+			ConsolePrint.profesorAsignado();
 		} else {
-			consolePrint.errorAsignarProfe();
+			ConsolePrint.errorAsignarProfe();
 		}
 	}
 	
@@ -40,17 +39,17 @@ public class GestionarAsignaturas {
 		int opcionInfoAsignatura = -1;
 		
 		try {
-			opcionInfoAsignatura = Integer.parseInt(consolePrint.ingresarIndiceAsignatura());
+			opcionInfoAsignatura = Integer.parseInt(ConsolePrint.ingresarIndiceAsignatura());
 			
 			if (opcionInfoAsignatura < director.getAsignaturas().size() && opcionInfoAsignatura >= 0) {
 				Asignatura asignatura = modelo.getAsignaturaByAsignaturaName(director.getAsignaturas().get(opcionInfoAsignatura));
 				
-				consolePrint.verAsignatura(asignatura);
+				ConsolePrint.verAsignatura(asignatura);
 			} else {
-				consolePrint.errorSolicitudOpcion();
+				ConsolePrint.errorSolicitudOpcion();
 			}
 		} catch (NumberFormatException e) {
-			consolePrint.errorSolicitudOpcion();
+			ConsolePrint.errorSolicitudOpcion();
 		}
 	}
 }
