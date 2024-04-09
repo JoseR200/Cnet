@@ -19,7 +19,7 @@ public class GestionarAlumnos {
 
     public void asignarAlumnoAsignatura() {
         String[] alumnoAsignatura = ConsolePrint.asignarAlumnoAsignatura();
-        if (modelo.existeAlumnoExisteAsignatura(alumnoAsignatura[0], alumnoAsignatura[1])) {
+        if (!modelo.existeAlumnoExisteAsignatura(alumnoAsignatura[0], alumnoAsignatura[1])) {
             modelo.addAlumnoAsignatura(alumnoAsignatura[0], alumnoAsignatura[1]);
             ConsolePrint.alumnoAsignado();
         } else {

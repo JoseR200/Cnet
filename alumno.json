@@ -8,14 +8,6 @@
     "contraseña": "123123"
   },
   {
-    "nombre": "Adrian",
-    "apellido": "Marquina",
-    "dni": "123456789",
-    "asignaturas": [],
-    "usuario": "adrian",
-    "contraseña": "123123"
-  },
-  {
     "nombre": "Juan",
     "apellido": "Perez",
     "dni": "123456789",
@@ -85,6 +77,16 @@
     "dni": "12345689",
     "asignaturas": [],
     "usuario": "cobol",
+    "contraseña": "123123"
+  },
+  {
+    "nombre": "Adrian",
+    "apellido": "Marquina",
+    "dni": "123456789",
+    "asignaturas": [
+      "Programacion I"
+    ],
+    "usuario": "adrian",
     "contraseña": "123123"
   }
 ]
