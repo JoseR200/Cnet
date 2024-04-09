@@ -43,11 +43,14 @@ public class GestionarAlumnos {
         var i = 0;
         while (i < alumnos.length) {
             for (int j = 0; j < 5; j++) {
+                if (i >= alumnos.length) {
+                    break;
+                }
                 ConsolePrint.verAlumno(alumnos[i]);
                 i++;
             }
             if (i < alumnos.length) {
-                var opcion = ConsolePrint.verMasAlumnos(i + 1, alumnos.length);
+                var opcion = ConsolePrint.verMasAlumnos(i, alumnos.length);
                 if (Objects.equals(opcion, "0")) {
                     i = alumnos.length;
                 }

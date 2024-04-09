@@ -1,17 +1,25 @@
 package modelos;
 
 public abstract class Entity {
-    protected String user;
-    protected String password;
+    protected String usuario;
+    protected String contraseña;
 
     public Entity() {
     }
 
-    public String getUser() {
-        return user;
+    public String getUsuario() {
+        return usuario;
     }
 
-    public String getPassword() {
-        return password;
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
+    public String getContraseña() {
+        return contraseña;
+    }
+
+    public void setContraseña(String contraseña) {
+        this.contraseña = contraseña;
     }
 }

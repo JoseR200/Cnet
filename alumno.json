@@ -2,81 +2,89 @@
   {
     "nombre": "Tomas",
     "apellido": "Ortiz",
-    "usuario": "TomasOrtiz",
-    "contraseña": "123123",
     "dni": "12456789",
-    "asignaturas": []
+    "asignaturas": [],
+    "usuario": "TomasOrtiz",
+    "contraseña": "123123"
   },
   {
     "nombre": "Adrian",
     "apellido": "Marquina",
-    "usuario": "adrian",
-    "contraseña": "123123",
     "dni": "123456789",
-    "asignaturas": []
+    "asignaturas": [],
+    "usuario": "adrian",
+    "contraseña": "123123"
   },
   {
     "nombre": "Juan",
     "apellido": "Perez",
-    "usuario": "juan",
-    "contraseña": "123123",
     "dni": "123456789",
-    "asignaturas": []
+    "asignaturas": [],
+    "usuario": "juan",
+    "contraseña": "123123"
   },
   {
     "nombre": "Pedro",
     "apellido": "Gonzalez",
-    "usuario": "pedro",
-    "contraseña": "123123",
     "dni": "123456789",
-    "asignaturas": []
+    "asignaturas": [],
+    "usuario": "pedro",
+    "contraseña": "123123"
   },
   {
     "nombre": "Maria",
     "apellido": "Garcia",
-    "usuario": "maria",
-    "contraseña": "123123",
     "dni": "123456789",
-    "asignaturas": []
+    "asignaturas": [],
+    "usuario": "maria",
+    "contraseña": "123123"
   },
   {
     "nombre": "Ana",
     "apellido": "Lopez",
-    "usuario": "ana",
-    "contraseña": "123123",
     "dni": "123456789",
-    "asignaturas": []
+    "asignaturas": [],
+    "usuario": "ana",
+    "contraseña": "123123"
   },
   {
     "nombre": "Lucia",
     "apellido": "Martinez",
-    "usuario": "lucia",
-    "contraseña": "123123",
     "dni": "123456789",
-    "asignaturas": []
+    "asignaturas": [],
+    "usuario": "lucia",
+    "contraseña": "123123"
   },
   {
     "nombre": "Sara",
     "apellido": "Sanchez",
-    "usuario": "sara",
-    "contraseña": "123123",
     "dni": "123456789",
-    "asignaturas": []
+    "asignaturas": [],
+    "usuario": "sara",
+    "contraseña": "123123"
   },
   {
     "nombre": "Laura",
     "apellido": "Ramirez",
-    "usuario": "laura",
-    "contraseña": "123123",
     "dni": "123456789",
-    "asignaturas": []
+    "asignaturas": [],
+    "usuario": "laura",
+    "contraseña": "123123"
   },
   {
     "nombre": "Carmen",
     "apellido": "Torres",
-    "usuario": "carmen",
-    "contraseña": "123123",
     "dni": "123456789",
-    "asignaturas": []
+    "asignaturas": [],
+    "usuario": "carmen",
+    "contraseña": "123123"
+  },
+  {
+    "nombre": "Adrian",
+    "apellido": "Marquina",
+    "dni": "12345689",
+    "asignaturas": [],
+    "usuario": "cobol",
+    "contraseña": "123123"
   }
 ]
