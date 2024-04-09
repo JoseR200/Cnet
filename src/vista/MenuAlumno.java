@@ -7,8 +7,8 @@ public class MenuAlumno {
 	GestionarAsignaturas gestionarAsignaturas = new GestionarAsignaturas();
 	GestionarAlumnos gestionarAlumnos = new GestionarAlumnos();
 	Modelo modelo = new Modelo();
-	
+
 	public void gestionarAsignaturas(String usuario) {
-		
+
 	}
 }

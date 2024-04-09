@@ -17,13 +17,75 @@ public class Modelo {
     private final static String ALUMNO_JSON_FILE = "alumno.json";
     private final static String ASIGNATURA_JSON_FILE = "asignatura.json";
 
+    public boolean existeAlumnoExisteAsignatura(String alumno, String asignatura) {
+        Alumno entity = getAlumnoByAlumnoUsername(alumno);
+        if (entity == null) {
+            System.out.println("Alumno no encontrado");
+            return true;
+        }
+
+        if (entity.getAsignaturas() != null) {
+            return entity.getAsignaturas().contains(asignatura);
+        }
+        return false;
+    }
+
+    public Alumno getAlumnoByAlumnoUsername(String alumno) {
+        for (Alumno al : readAlumnosFromJson()) {
+            if (al.getUsuario().equals(alumno)) {
+                return al;
+            }
+        }
+        return null;
+    }
+
+    public void addAlumnoAsignatura(String alumno, String asignatura) {
+        Alumno entity = getAlumnoByAlumnoUsername(alumno);
+        if (entity == null) {
+            System.out.println("Alumno no encontrado");
+            return;
+        }
+
+        entity.addAsignatura(asignatura);
+
+        modifyAlumno(entity);
+    }
+
+    private void modifyAlumno(Alumno entity) {
+        List<Alumno> alumnos = readAlumnosFromJson();
+        alumnos.removeIf(a -> a.getUsuario().equals(entity.getUsuario()));
+        alumnos.add(entity);
+
+        Gson prettyGson = new GsonBuilder().setPrettyPrinting().create();
+
+        try (FileWriter writer = new FileWriter(ALUMNO_JSON_FILE)) {
+            prettyGson.toJson(alumnos, writer);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public boolean existeAlumno(String alumno) {
+        for (Alumno al : readAlumnosFromJson()) {
+            if (al.getUsuario().equals(alumno)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public Alumno[] getAlumnos() {
+        List<Alumno> alumnos = readAlumnosFromJson();
+        return alumnos.toArray(new Alumno[0]);
+    }
+
     public enum ExportFormat {
         JSON,
         XML,
         CSV
     }
 
-    public static void Export(List<?> entites, ExportFormat exportFormat, String fileName) {
+    public static void Export(List<?> entities, ExportFormat exportFormat, String fileName) {
         if (fileName == null || fileName.isEmpty()) {
             fileName = "data";
         }
@@ -33,18 +95,18 @@ public class Modelo {
         try {
             switch (exportFormat) {
                 case JSON:
-                    ExportJSON(entites, finalFileName);
+                    ExportJSON(entities, finalFileName);
                     break;
                 case XML:
-                    ExportXML(entites, finalFileName);
+                    ExportXML(entities, finalFileName);
                     break;
                 case CSV:
-                    ExportCSV(entites, finalFileName);
+                    ExportCSV(entities, finalFileName);
                     break;
             }
             System.out.println("Datos exportados correctamente");
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Error al exportar los datos", e);
         }
     }
 
@@ -70,7 +132,7 @@ public class Modelo {
                     field.setAccessible(true);
                     lines.append(field.get(entity)).append(",");
                 } catch (IllegalAccessException e) {
-                    e.printStackTrace();
+                    throw new RuntimeException("Error al exportar los datos", e);
                 }
             });
             lines.append("\n");
@@ -99,7 +161,7 @@ public class Modelo {
                     field.setAccessible(true);
                     lines.append("<").append(field.getName()).append(">").append(field.get(entity)).append("</").append(field.getName()).append(">\n");
                 } catch (IllegalAccessException e) {
-                    e.printStackTrace();
+                    throw new RuntimeException("Error al exportar los datos", e);
                 }
             });
             lines.append("</").append(entity.getClass().getSimpleName()).append(">\n");
@@ -163,6 +225,27 @@ public class Modelo {
 
         try (FileWriter writer = new FileWriter(ASIGNATURA_JSON_FILE)) {
             prettyGson.toJson(asignaturas, writer);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return true;
+    }
+
+    public Boolean writeAlumno(Alumno alumno) {
+        List<Alumno> alumnos = readAlumnosFromJson();
+
+        for (Alumno existingAlumno : alumnos) {
+            if (existingAlumno.getUsuario().equals(alumno.getUsuario()) || existingAlumno.getDni().equals(alumno.getDni())) {
+                return false;
+            }
+        }
+
+        alumnos.add(alumno);
+
+        Gson prettyGson = new GsonBuilder().setPrettyPrinting().create();
+
+        try (FileWriter writer = new FileWriter(ALUMNO_JSON_FILE)) {
+            prettyGson.toJson(alumnos, writer);
         } catch (IOException e) {
             e.printStackTrace();
         }

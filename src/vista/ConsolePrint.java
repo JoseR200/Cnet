@@ -3,6 +3,7 @@ package vista;
 import java.util.List;
 import java.util.Scanner;
 
+import modelos.Alumno;
 import modelos.Asignatura;
 import modelos.Profesor;
 
@@ -164,10 +165,12 @@ public abstract class ConsolePrint {
     public static String gestionarAlumnosDirector() {
         String opcionString;
 
+        System.out.println("0. Regresar");
         System.out.println("1. Crear nueva alumno");
         System.out.println("2. Asignar alumno a asignatura");
         System.out.println("3. Ver informacion de un alumno");
-        System.out.println("4. Regresar");
+        System.out.println("4. Ver todos los alumnos");
+
         System.out.print("Ingrese una opcion: ");
         opcionString = input.nextLine();
         System.out.println();
@@ -230,6 +233,53 @@ public abstract class ConsolePrint {
         System.out.println();
 
         return profesor;
+    }
+
+    public static Alumno crearAlumno() {
+        Alumno alumno = new Alumno();
+
+        System.out.println("Ingrese informacion de alumno");
+        System.out.print("Ingrese nombre: ");
+        alumno.setNombre(input.nextLine());
+        System.out.print("Ingrese apellido: ");
+        alumno.setApellido(input.nextLine());
+        System.out.print("Ingrese usuario para ingresar a la aplicacion: ");
+        alumno.setUsuario(input.nextLine());
+        System.out.print("Ingrese contraseña: ");
+        alumno.setContraseña(input.nextLine());
+        System.out.print("Ingrese dni: ");
+        alumno.setDni(input.nextLine());
+        System.out.println();
+
+        return alumno;
+    }
+
+    public static <T> T CreateEntity(Class<T> entityClass) {
+        T entity = null;
+
+        // We create an instance of the entity
+        try {
+            entity = entityClass.getDeclaredConstructor().newInstance();
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("Error al crear la entidad");
+        }
+
+        var fields = entityClass.getDeclaredFields();
+
+        for (var field : fields) {
+            System.out.print("Ingrese " + field.getName() + ": ");
+            var value = input.nextLine();
+            System.out.println();
+            field.setAccessible(true);
+            try {
+                field.set(entity, value);
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+                throw new RuntimeException("Error al asignar valor al campo");
+            }
+        }
+        return entity;
     }
 
     public static String ingresarIndiceProfe() {
@@ -372,5 +422,75 @@ public abstract class ConsolePrint {
             System.out.println("Esta asignatura no tiene alumnos matriculados");
         }
         System.out.println();
+    }
+
+    public static void alumnoCreado() {
+        System.out.println("Alumno creado exitosamente");
+        System.out.println();
+    }
+
+    public static void errorCrearAlumno() {
+        System.out.println("Error al crear alumno, uno existente con los mismos datos, intente de nuevo");
+        System.out.println();
+    }
+
+    public static String[] asignarAlumnoAsignatura() {
+        String usuarioAlumno;
+        String nombreAsignatura;
+
+        System.out.println("Ingrese el usuario del alumno y luego el  nombre de la asignatura");
+        System.out.print("Usuario: ");
+        usuarioAlumno = input.nextLine();
+        System.out.print("Asignatura: ");
+        nombreAsignatura = input.nextLine();
+        System.out.println();
+
+        return new String[]{usuarioAlumno, nombreAsignatura};
+    }
+
+    public static void errorAsignarAlumno() {
+        System.out.println("Error al asignar alumno a asignatura, intente de nuevo");
+        System.out.println("Puede deberse a que no existe el alumno, no existe la asignatura o el alumno ya esta matriculado en la asignatura");
+        System.out.println();
+    }
+
+    public static void alumnoAsignado() {
+        System.out.println("Alumno asignado a asignatura exitosamente");
+        System.out.println();
+    }
+
+    public static String ingresarAlumno() {
+        String opcionAlumno;
+
+        System.out.print("Ingrese el usuario del alumno: ");
+        opcionAlumno = input.nextLine();
+        System.out.println();
+
+        return opcionAlumno;
+    }
+
+    public static void verAlumno(Alumno alumnoByAlumnoUsername) {
+        System.out.println("Informacion de alumno");
+        System.out.println("Nombre: " + alumnoByAlumnoUsername.getNombre());
+        System.out.println("Apellido: " + alumnoByAlumnoUsername.getApellido());
+        System.out.println("Usuario: " + alumnoByAlumnoUsername.getUsuario());
+        System.out.println("Dni: " + alumnoByAlumnoUsername.getDni());
+        System.out.println();
+
+        if (!alumnoByAlumnoUsername.getAsignaturas().isEmpty()) {
+            System.out.println("Aqui estan las asignaturas en las que esta matriculado");
+            for (String a : alumnoByAlumnoUsername.getAsignaturas()) {
+                System.out.println(a);
+            }
+        } else {
+            System.out.println("Este alumno no esta matriculado en ninguna asignatura");
+        }
+        System.out.println();
+    }
+
+    public static String verMasAlumnos(int index, int total) {
+        System.out.println("Alumnos mostrados: " + index + " de " + total);
+        System.out.print("Ingrese 0 para regresar o cualquier otra tecla para ver mas alumnos: ");
+        return input.nextLine();
     }
 }

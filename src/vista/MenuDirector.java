@@ -143,6 +143,9 @@ public class MenuDirector {
                 continue;
             }
 
+            if (opcionDirectorAlumnos == 0) {
+                break;
+            }
             if (opcionDirectorAlumnos == 1) {
                 //TODO falta hacer todo
                 gestionarAlumnos.crearAlumno();
@@ -153,7 +156,7 @@ public class MenuDirector {
                 //TODO falta hacer todo
                 gestionarAlumnos.obtenerAlumno();
             } else if (opcionDirectorAlumnos == 4) {
-                continue;
+                gestionarAlumnos.obtenerAlumnos();
             } else {
                 ConsolePrint.errorSolicitudOpcion();
             }
