@@ -67,7 +67,24 @@ public class GestionarProfesores {
 			if (opcionInfoProfesor < director.getProfesores().size() && opcionInfoProfesor >= 0) {
 				Profesor profesor = modelo.getProfesorByProfesorUsername(director.getProfesores().get(opcionInfoProfesor));
 				
-				consolePrint.verProfe(profesor);
+				int opcionActualizar = -1;
+				while (opcionActualizar != 2) {
+					try {
+						opcionActualizar = Integer.parseInt(consolePrint.verProfe(profesor));
+
+						if (opcionActualizar == 1) {
+							profesor = consolePrint.actualProfe(profesor);
+							modelo.modifyProfesor(profesor);
+							consolePrint.profesorActualizado();
+						} else if (opcionActualizar == 2) {
+							continue;
+						} else {
+							consolePrint.errorSolicitudOpcion();
+						}
+					} catch (NumberFormatException e) {
+						consolePrint.errorSolicitudOpcion();
+					}
+				}
 			} else {
 				consolePrint.errorSolicitudOpcion();
 			}

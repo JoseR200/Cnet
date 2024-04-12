@@ -46,7 +46,6 @@ public class MenuDirector {
 				} else if (opcionDirectorProfesores == 2) {
 					gestionarProfesores.despedirProfesor(director);
 				} else if (opcionDirectorProfesores == 3) {
-					//TODO CUARTO NIVEL DE ACTUALIZAR INFORMACION DE PROFESOR
 					gestionarProfesores.obtenerProfesor(director);
 				} else if (opcionDirectorProfesores == 4) {
 					continue;
