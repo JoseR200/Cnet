@@ -1,6 +1,7 @@
 package vista;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import modelos.Asignatura;
 import modelos.Director;
@@ -73,5 +74,14 @@ public class GestionarProfesores {
 		} catch (NumberFormatException e) {
 			ConsolePrint.errorSolicitudOpcion();
 		}
+	}
+	
+	//Revisar
+	public void exportarProfesores(Director director) {
+		var profesores = director.getProfesores().stream().map(
+                (professor) -> modelo.getProfesorByProfesorUsername(professor)
+        ).collect(Collectors.toList());
+		
+		Modelo.Export(profesores, "profesores");
 	}
 }

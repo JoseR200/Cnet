@@ -1,9 +1,10 @@
 package vista;
 
+import java.util.List;
+
+import modelos.Alumno;
 import modelos.Director;
 import modelos.Modelo;
-
-import java.util.stream.Collectors;
 
 public class MenuDirector {
     GestionarProfesores gestionarProfesores = new GestionarProfesores();
@@ -28,59 +29,33 @@ public class MenuDirector {
                     gestionarProfesores.crearProfesor(director);
                     opcionDirectorProfesores = 2;
                 } else if (opcionDirectorProfesores == 2) {
-                    break;
+                	continue;
                 } else {
                     ConsolePrint.errorSolicitudOpcion();
                 }
             }
             return;
-        }
-        while (true) {
-            try {
-                opcionDirectorProfesores = Integer.parseInt(ConsolePrint.gestionarProfesoresDirector(director.getProfesores()));
-            } catch (NumberFormatException e) {
-                ConsolePrint.errorSolicitudOpcion();
-                continue;
-            }
-            if (opcionDirectorProfesores == 0) {
-                break;
-            }
-
-            switch (opcionDirectorProfesores) {
-                case 1:
-                    gestionarProfesores.crearProfesor(director);
-                    break;
-                case 2:
-                    gestionarProfesores.despedirProfesor(director);
-                    break;
-                case 3:
-                    //TODO CUARTO NIVEL DE ACTUALIZAR INFORMACION DE PROFESOR
-                    gestionarProfesores.obtenerProfesor(director);
-                    break;
-                case 4:
-                    var exportFormat = ConsolePrint.exportarProfesores();
-                    var profesores = director.getProfesores().stream().map(
-                            (professor) -> modelo.getProfesorByProfesorUsername(professor)
-                    ).collect(Collectors.toList());
-                    switch (exportFormat) {
-                        case "CSV":
-                            Modelo.Export(profesores, Modelo.ExportFormat.CSV, "profesores");
-                            break;
-                        case "JSON":
-                            Modelo.Export(profesores, Modelo.ExportFormat.JSON, "profesores");
-                            break;
-                        case "XML":
-                            Modelo.Export(profesores, Modelo.ExportFormat.XML, "profesores");
-                            break;
-                        default:
-                            ConsolePrint.errorSolicitudOpcion();
-                            break;
-                    }
-                    break;
-                default:
+        } else {
+        	while (opcionDirectorProfesores != 4) {
+        		try {
+                    opcionDirectorProfesores = Integer.parseInt(ConsolePrint.gestionarProfesoresDirector(director.getProfesores()));
+                } catch (NumberFormatException e) {
                     ConsolePrint.errorSolicitudOpcion();
-                    break;
-            }
+                    continue;
+                }
+        		
+        		if (opcionDirectorProfesores == 1) {
+					gestionarProfesores.crearProfesor(director);
+				} else if (opcionDirectorProfesores == 2) {
+					gestionarProfesores.despedirProfesor(director);
+				} else if (opcionDirectorProfesores == 3) {
+					gestionarProfesores.obtenerProfesor(director);
+				} else if (opcionDirectorProfesores == 4) {
+					continue;
+				} else {
+					ConsolePrint.errorSolicitudOpcion();
+				}
+        	}
         }
     }
 
@@ -133,31 +108,49 @@ public class MenuDirector {
 
     public void gestionarAlumnos() {
         int opcionDirectorAlumnos = -1;
+        
+        List<Alumno> alumnos = modelo.readAlumnosFromJson();
+        
+        if (alumnos.size() == 0) {
+        	while (opcionDirectorAlumnos != 2) {
+                try {
+                	opcionDirectorAlumnos = Integer.parseInt(ConsolePrint.errorAlumnosEnCampusVacio());
+                } catch (NumberFormatException e) {
+                    ConsolePrint.errorSolicitudOpcion();
+                    continue;
+                }
 
-        while (opcionDirectorAlumnos != 4) {
-            try {
-                opcionDirectorAlumnos = Integer.parseInt(ConsolePrint.gestionarAlumnosDirector());
-            } catch (NumberFormatException e) {
-                ConsolePrint.errorSolicitudOpcion();
-                continue;
+                if (opcionDirectorAlumnos == 1) {
+                	gestionarAlumnos.crearAlumno();
+                    opcionDirectorAlumnos = 2;
+                } else if (opcionDirectorAlumnos == 2) {
+                    continue;
+                } else {
+                    ConsolePrint.errorSolicitudOpcion();
+                }
             }
+        } else {
+        	while (opcionDirectorAlumnos != 5) {
+                try {
+                    opcionDirectorAlumnos = Integer.parseInt(ConsolePrint.gestionarAlumnosDirector());
+                } catch (NumberFormatException e) {
+                    ConsolePrint.errorSolicitudOpcion();
+                    continue;
+                }
 
-            if (opcionDirectorAlumnos == 0) {
-                break;
-            }
-            if (opcionDirectorAlumnos == 1) {
-                //TODO falta hacer todo
-                gestionarAlumnos.crearAlumno();
-            } else if (opcionDirectorAlumnos == 2) {
-                //TODO falta hacer todo
-                gestionarAlumnos.asignarAlumnoAsignatura();
-            } else if (opcionDirectorAlumnos == 3) {
-                //TODO falta hacer todo
-                gestionarAlumnos.obtenerAlumno();
-            } else if (opcionDirectorAlumnos == 4) {
-                gestionarAlumnos.obtenerAlumnos();
-            } else {
-                ConsolePrint.errorSolicitudOpcion();
+                if (opcionDirectorAlumnos == 1) {
+                    gestionarAlumnos.crearAlumno();
+                } else if (opcionDirectorAlumnos == 2) {
+                    gestionarAlumnos.asignarAlumnoAsignatura();
+                } else if (opcionDirectorAlumnos == 3) {
+                    gestionarAlumnos.obtenerAlumno();
+                } else if (opcionDirectorAlumnos == 4) {
+                    gestionarAlumnos.obtenerAlumnos();
+                } else if (opcionDirectorAlumnos == 5) {
+                    continue;
+                } else {
+                    ConsolePrint.errorSolicitudOpcion();
+                }
             }
         }
     }

@@ -2,7 +2,7 @@
   {
     "nombre": "Tomas",
     "apellido": "Ortiz",
-    "dni": "12456789",
+    "dni": "1245678l9",
     "asignaturas": [],
     "usuario": "TomasOrtiz",
     "contraseña": "123123"
@@ -10,7 +10,7 @@
   {
     "nombre": "Juan",
     "apellido": "Perez",
-    "dni": "123456789",
+    "dni": "12345uy6789",
     "asignaturas": [],
     "usuario": "juan",
     "contraseña": "123123"
@@ -18,7 +18,7 @@
   {
     "nombre": "Pedro",
     "apellido": "Gonzalez",
-    "dni": "123456789",
+    "dni": "1234aaa56789",
     "asignaturas": [],
     "usuario": "pedro",
     "contraseña": "123123"
@@ -26,7 +26,7 @@
   {
     "nombre": "Maria",
     "apellido": "Garcia",
-    "dni": "123456789",
+    "dni": "12345,it6789",
     "asignaturas": [],
     "usuario": "maria",
     "contraseña": "123123"
@@ -34,7 +34,7 @@
   {
     "nombre": "Ana",
     "apellido": "Lopez",
-    "dni": "123456789",
+    "dni": "12345jy6789",
     "asignaturas": [],
     "usuario": "ana",
     "contraseña": "123123"
@@ -42,7 +42,7 @@
   {
     "nombre": "Lucia",
     "apellido": "Martinez",
-    "dni": "123456789",
+    "dni": "12hh3456789",
     "asignaturas": [],
     "usuario": "lucia",
     "contraseña": "123123"
@@ -50,7 +50,7 @@
   {
     "nombre": "Sara",
     "apellido": "Sanchez",
-    "dni": "123456789",
+    "dni": "123456dss789",
     "asignaturas": [],
     "usuario": "sara",
     "contraseña": "123123"
@@ -58,7 +58,7 @@
   {
     "nombre": "Laura",
     "apellido": "Ramirez",
-    "dni": "123456789",
+    "dni": "123456t789",
     "asignaturas": [],
     "usuario": "laura",
     "contraseña": "123123"
@@ -66,7 +66,7 @@
   {
     "nombre": "Carmen",
     "apellido": "Torres",
-    "dni": "123456789",
+    "dni": "12345fd6789",
     "asignaturas": [],
     "usuario": "carmen",
     "contraseña": "123123"
@@ -74,7 +74,7 @@
   {
     "nombre": "Adrian",
     "apellido": "Marquina",
-    "dni": "12345689",
+    "dni": "123456jgfd89",
     "asignaturas": [],
     "usuario": "cobol",
     "contraseña": "123123"
@@ -82,7 +82,7 @@
   {
     "nombre": "Adrian",
     "apellido": "Marquina",
-    "dni": "123456789",
+    "dni": "123456jjj789",
     "asignaturas": [
       "Programacion I"
     ],

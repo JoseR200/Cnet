@@ -19,6 +19,7 @@ public class GestionarAsignaturas {
 	
 	public void asignarProfeAsignatura() {
 		String[] profesorAsignatura = ConsolePrint.asignarProfesorAsignatura();
+		
 		if (modelo.existeProfesorExisteAsignatura(profesorAsignatura[0], profesorAsignatura[1])) {
 			Profesor profesor = modelo.getProfesorByProfesorUsername(profesorAsignatura[0]);
 			profesor.addAsignatura(profesorAsignatura[1]);

@@ -120,22 +120,10 @@ public abstract class ConsolePrint {
             System.out.println(i + ". " + profesores.get(i));
         }
         System.out.println();
-        System.out.println("0. Regresar");
         System.out.println("1. Crear nuevo profesor");
         System.out.println("2. Despedir profesor");
         System.out.println("3. Ver informacion de un profesor");
-        System.out.println("4. Exportar profesores");
-        System.out.print("Ingrese una opcion: ");
-        opcionString = input.nextLine();
-        System.out.println();
-
-        return opcionString;
-    }
-
-    public static String exportarProfesores() {
-        String opcionString;
-
-        System.out.println("Ingrese el formato de exportacion (CSV, JSON, XML)");
+        System.out.println("4. Regresar");
         System.out.print("Ingrese una opcion: ");
         opcionString = input.nextLine();
         System.out.println();
@@ -165,11 +153,11 @@ public abstract class ConsolePrint {
     public static String gestionarAlumnosDirector() {
         String opcionString;
 
-        System.out.println("0. Regresar");
-        System.out.println("1. Crear nueva alumno");
+        System.out.println("1. Crear nuevo alumno");
         System.out.println("2. Asignar alumno a asignatura");
         System.out.println("3. Ver informacion de un alumno");
         System.out.println("4. Ver todos los alumnos");
+        System.out.println("5. Regresar");
 
         System.out.print("Ingrese una opcion: ");
         opcionString = input.nextLine();
@@ -215,6 +203,20 @@ public abstract class ConsolePrint {
 
         return opcionString;
     }
+    
+    public static String errorAlumnosEnCampusVacio() {
+        String opcionString;
+
+        System.out.println("Error al obtener alumnos en campus, intente de nuevo o cree un alumno");
+        System.out.println();
+        System.out.println("1. Crear alumno");
+        System.out.println("2. Regresar");
+        System.out.print("Ingrese una opcion: ");
+        opcionString = input.nextLine();
+        System.out.println();
+
+        return opcionString;
+    }
 
     public static Profesor crearProfe() {
         Profesor profesor = new Profesor();
@@ -252,34 +254,6 @@ public abstract class ConsolePrint {
         System.out.println();
 
         return alumno;
-    }
-
-    public static <T> T CreateEntity(Class<T> entityClass) {
-        T entity = null;
-
-        // We create an instance of the entity
-        try {
-            entity = entityClass.getDeclaredConstructor().newInstance();
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw new RuntimeException("Error al crear la entidad");
-        }
-
-        var fields = entityClass.getDeclaredFields();
-
-        for (var field : fields) {
-            System.out.print("Ingrese " + field.getName() + ": ");
-            var value = input.nextLine();
-            System.out.println();
-            field.setAccessible(true);
-            try {
-                field.set(entity, value);
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
-                throw new RuntimeException("Error al asignar valor al campo");
-            }
-        }
-        return entity;
     }
 
     public static String ingresarIndiceProfe() {
@@ -356,7 +330,6 @@ public abstract class ConsolePrint {
         System.out.println("Ingrese informacion de asignatura");
         System.out.print("Ingrese nombre de asignatura: ");
         asignatura.setNombre(input.nextLine());
-        System.out.println(asignatura.getNombre());
         System.out.println();
 
         return asignatura;
@@ -469,17 +442,17 @@ public abstract class ConsolePrint {
         return opcionAlumno;
     }
 
-    public static void verAlumno(Alumno alumnoByAlumnoUsername) {
+    public static void verAlumno(Alumno alumno) {
         System.out.println("Informacion de alumno");
-        System.out.println("Nombre: " + alumnoByAlumnoUsername.getNombre());
-        System.out.println("Apellido: " + alumnoByAlumnoUsername.getApellido());
-        System.out.println("Usuario: " + alumnoByAlumnoUsername.getUsuario());
-        System.out.println("Dni: " + alumnoByAlumnoUsername.getDni());
+        System.out.println("Nombre: " + alumno.getNombre());
+        System.out.println("Apellido: " + alumno.getApellido());
+        System.out.println("Usuario: " + alumno.getUsuario());
+        System.out.println("Dni: " + alumno.getDni());
         System.out.println();
 
-        if (!alumnoByAlumnoUsername.getAsignaturas().isEmpty()) {
-            System.out.println("Aqui estan las asignaturas en las que esta matriculado");
-            for (String a : alumnoByAlumnoUsername.getAsignaturas()) {
+        if (!alumno.getAsignaturas().isEmpty()) {
+            System.out.println("Aqui estan las asignaturas en las que estas matriculado");
+            for (String a : alumno.getAsignaturas()) {
                 System.out.println(a);
             }
         } else {
