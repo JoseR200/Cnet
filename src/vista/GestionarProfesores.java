@@ -1,6 +1,7 @@
 package vista;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import modelos.Asignatura;
 import modelos.Director;
@@ -8,25 +9,24 @@ import modelos.Modelo;
 import modelos.Profesor;
 
 public class GestionarProfesores {
-	ConsolePrint consolePrint = new ConsolePrint();
 	Modelo modelo = new Modelo();
 	
 	public void crearProfesor(Director director) {
-		if (modelo.writeProfesor(consolePrint.crearProfe(), director)) {
+		if (modelo.writeProfesor(ConsolePrint.crearProfe(), director)) {
 			modelo.modifyDirector(director);
-			consolePrint.profesorCreado();
+			ConsolePrint.profesorCreado();
 		} else {
-			consolePrint.errorCrearProfesor();
+			ConsolePrint.errorCrearProfesor();
 		}
 	}
 	
 	public void despedirProfesor(Director director) {
-		String profeEliminar = consolePrint.despedirProfe();
+		String profeEliminar = ConsolePrint.despedirProfe();
 		
 		Boolean pedirReemplazo = modelo.profesorTieneAsignatura(profeEliminar);
 		
 		if (pedirReemplazo) {
-			String profeReemplazo = consolePrint.reemplazoDeProfe();
+			String profeReemplazo = ConsolePrint.reemplazoDeProfe();
 			
 			if (modelo.existeProfesor(profeEliminar) && modelo.existeProfesor(profeReemplazo)) {
 				List<String> asignaturasProfesor = modelo.getProfesorByProfesorUsername(profeEliminar).getAsignaturas();
@@ -43,17 +43,17 @@ public class GestionarProfesores {
 				modelo.deleteProfesor(profeEliminar, director);
 				modelo.modifyDirector(director);
 				modelo.modifyProfesor(profesorRemplazo);
-				consolePrint.profesorEliminado();
+				ConsolePrint.profesorEliminado();
 			} else {
-				consolePrint.errorEliminarProfesor();
+				ConsolePrint.errorEliminarProfesor();
 			}
 		} else {
 			if (modelo.existeProfesor(profeEliminar)) {
 				modelo.deleteProfesor(profeEliminar, director);
 				modelo.modifyDirector(director);
-				consolePrint.profesorEliminado();
+				ConsolePrint.profesorEliminado();
 			} else {
-				consolePrint.errorEliminarProfesor();
+				ConsolePrint.errorEliminarProfesor();
 			}
 		}
 	}
@@ -62,7 +62,7 @@ public class GestionarProfesores {
 		int opcionInfoProfesor = -1;
 		
 		try {
-			opcionInfoProfesor = Integer.parseInt(consolePrint.ingresarIndiceProfe());
+			opcionInfoProfesor = Integer.parseInt(ConsolePrint.ingresarIndiceProfe());
 			
 			if (opcionInfoProfesor < director.getProfesores().size() && opcionInfoProfesor >= 0) {
 				Profesor profesor = modelo.getProfesorByProfesorUsername(director.getProfesores().get(opcionInfoProfesor));
@@ -70,26 +70,35 @@ public class GestionarProfesores {
 				int opcionActualizar = -1;
 				while (opcionActualizar != 2) {
 					try {
-						opcionActualizar = Integer.parseInt(consolePrint.verProfe(profesor));
+						opcionActualizar = Integer.parseInt(ConsolePrint.verProfe(profesor));
 
 						if (opcionActualizar == 1) {
-							profesor = consolePrint.actualProfe(profesor);
+							profesor = ConsolePrint.actualProfe(profesor);
 							modelo.modifyProfesor(profesor);
-							consolePrint.profesorActualizado();
+							ConsolePrint.profesorActualizado();
 						} else if (opcionActualizar == 2) {
 							continue;
 						} else {
-							consolePrint.errorSolicitudOpcion();
+							ConsolePrint.errorSolicitudOpcion();
 						}
 					} catch (NumberFormatException e) {
-						consolePrint.errorSolicitudOpcion();
+						ConsolePrint.errorSolicitudOpcion();
 					}
 				}
 			} else {
-				consolePrint.errorSolicitudOpcion();
+				ConsolePrint.errorSolicitudOpcion();
 			}
 		} catch (NumberFormatException e) {
-			consolePrint.errorSolicitudOpcion();
+			ConsolePrint.errorSolicitudOpcion();
 		}
+	}
+	
+	//Revisar
+	public void exportarProfesores(Director director) {
+		var profesores = director.getProfesores().stream().map(
+                (professor) -> modelo.getProfesorByProfesorUsername(professor)
+        ).collect(Collectors.toList());
+		
+		Modelo.Export(profesores, "profesores");
 	}
 }

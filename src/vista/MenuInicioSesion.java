@@ -3,7 +3,6 @@ package vista;
 import modelos.Modelo;
 
 public class MenuInicioSesion {
-	ConsolePrint consolePrint = new ConsolePrint();
 	MenuDirector menuDirector = new MenuDirector();
 	MenuProfesor menuProfesor = new MenuProfesor();
 	MenuAlumno menuAlumno = new MenuAlumno();
@@ -12,17 +11,17 @@ public class MenuInicioSesion {
 	String[] credenciales;
 	
 	public void menuInicioSesionDirector() {
-		credenciales = consolePrint.inicioSesion();
+		credenciales = ConsolePrint.inicioSesion();
 		if (modelo.loginDirector(credenciales)) {
 			int opcionDirector = -1;
 			
-			consolePrint.bienvenidaDirector();
+			ConsolePrint.bienvenidaDirector();
 			
 			while (opcionDirector != 4) {
 				try {
-					opcionDirector = Integer.parseInt(consolePrint.menuDirector());
+					opcionDirector = Integer.parseInt(ConsolePrint.menuDirector());
 				} catch (NumberFormatException e) {
-					consolePrint.errorSolicitudOpcion();
+					ConsolePrint.errorSolicitudOpcion();
 					continue;
 				}
 				
@@ -36,26 +35,26 @@ public class MenuInicioSesion {
 				} else if (opcionDirector == 4) {
 					continue;
 				} else {
-					consolePrint.errorSolicitudOpcion();
+					ConsolePrint.errorSolicitudOpcion();
 				}
 			}
 		} else {
-			consolePrint.errorInicioSesion();
+			ConsolePrint.errorInicioSesion();
 		}
 	}
 	
 	public void menuInicioSesionProfesor() {
-		credenciales = consolePrint.inicioSesion();
+		credenciales = ConsolePrint.inicioSesion();
 		if (modelo.loginProfesor(credenciales)) {
 			int opcionProfesor = -1;
 			
-			consolePrint.bienvenidaProfesor();
+			ConsolePrint.bienvenidaProfesor();
 			
 			while (opcionProfesor != 3) {
 				try {
-					opcionProfesor = Integer.parseInt(consolePrint.menuProfesor());
+					opcionProfesor = Integer.parseInt(ConsolePrint.menuProfesor());
 				} catch (NumberFormatException e) {
-					consolePrint.errorSolicitudOpcion();
+					ConsolePrint.errorSolicitudOpcion();
 					continue;
 				}
 				
@@ -68,26 +67,26 @@ public class MenuInicioSesion {
 				} else if (opcionProfesor == 3) {
 					continue;
 				} else {
-					consolePrint.errorSolicitudOpcion();
+					ConsolePrint.errorSolicitudOpcion();
 				}
 			}
 		} else {
-			consolePrint.errorInicioSesion();
+			ConsolePrint.errorInicioSesion();
 		}
 	}
 	
 	public void menuInicioSesionAlumno() {
-		credenciales = consolePrint.inicioSesion();
+		credenciales = ConsolePrint.inicioSesion();
 		if (modelo.loginAlumno(credenciales)) {
 			int opcionAlumno = -1;
 			
-			consolePrint.bienvenidaAlumno();
+			ConsolePrint.bienvenidaAlumno();
 			
 			while (opcionAlumno != 2) {
 				try {
-					opcionAlumno = Integer.parseInt(consolePrint.menuAlumno());
+					opcionAlumno = Integer.parseInt(ConsolePrint.menuAlumno());
 				} catch (NumberFormatException e) {
-					consolePrint.errorSolicitudOpcion();
+					ConsolePrint.errorSolicitudOpcion();
 					continue;
 				}
 				
@@ -97,11 +96,11 @@ public class MenuInicioSesion {
 				} else if (opcionAlumno == 2) {
 					continue;
 				} else {
-					consolePrint.errorSolicitudOpcion();
+					ConsolePrint.errorSolicitudOpcion();
 				}
 			}
 		} else {
-			consolePrint.errorInicioSesion();
+			ConsolePrint.errorInicioSesion();
 		}
 	}
 }
