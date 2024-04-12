@@ -265,25 +265,35 @@ public abstract class ConsolePrint {
 
         return opcionProfesor;
     }
-
-    public static void verProfe(Profesor profesor) {
-        System.out.println("Informacion de profesor");
-        System.out.println("Nombre: " + profesor.getNombre());
-        System.out.println("Apellido: " + profesor.getApellido());
-        System.out.println("Usuario: " + profesor.getUsuario());
-        System.out.println("Dni: " + profesor.getDni());
-        System.out.println();
-
-        if (!profesor.getAsignaturas().isEmpty()) {
-            System.out.println("Aqui estan las asignaturas que el profesor imparte");
-            for (String a : profesor.getAsignaturas()) {
-                System.out.println(a);
-            }
-        } else {
-            System.out.println("Este profesor no tiene asignaturas");
-        }
-        System.out.println();
-    }
+    
+    public static String verProfe(Profesor profesor) {
+		String opcionString = "";
+		
+		System.out.println("Informacion de profesor");
+		System.out.println("Nombre: " + profesor.getNombre());
+		System.out.println("Apellido: " + profesor.getApellido());
+		System.out.println("Usuario: " + profesor.getUsuario());
+		System.out.println("Dni: " + profesor.getDni());
+		System.out.println("");
+		
+		if (profesor.getAsignaturas().size() > 0) {
+			System.out.println("Aqui estan las asignaturas que el profesor imparte");
+			for (String a: profesor.getAsignaturas()) {
+				System.out.println(a);
+			}
+		} else {
+			System.out.println("Este profesor no tiene asignaturas");
+		}
+		System.out.println("");
+		System.out.println("Actualizar el profesor:");
+		System.out.println("1. Actualizar profesor");
+		System.out.println("2. Regresar");
+		System.out.print("Ingrese una opcion: ");
+		opcionString = input.nextLine();
+		System.out.println("");
+		
+		return opcionString;
+	}
 
     public static String despedirProfe() {
         String deleteProfeUser;
@@ -466,4 +476,21 @@ public abstract class ConsolePrint {
         System.out.print("Ingrese 0 para regresar o cualquier otra tecla para ver mas alumnos: ");
         return input.nextLine();
     }
+	
+	public static Profesor actualProfe(Profesor profesor) {
+		
+		System.out.println("Ingrese nueva informacion del profesor:");
+		System.out.print("Ingrese nombre (Nombre original '" + profesor.getNombre() + "'): ");
+		profesor.setNombre(input.nextLine());
+		System.out.print("Ingrese apellido (Apellido original '" + profesor.getApellido() + "'): ");
+		profesor.setApellido(input.nextLine());
+		System.out.println("");
+		
+		return profesor;
+	}
+	
+	public static void profesorActualizado() {
+		System.out.println("Profesor actualizado exitosamente");
+		System.out.println("");
+	}
 }
