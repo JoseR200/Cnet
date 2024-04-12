@@ -4,7 +4,6 @@ import modelos.Director;
 import modelos.Modelo;
 
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class MenuDirector {
     GestionarProfesores gestionarProfesores = new GestionarProfesores();
