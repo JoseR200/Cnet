@@ -220,6 +220,18 @@ public class ConsolePrint {
 		return profesor;
 	}
 	
+	public Profesor actualProfe(Profesor profesor) {
+		
+		System.out.println("Ingrese nueva informacion del profesor:");
+		System.out.print("Ingrese nombre (Nombre original '" + profesor.getNombre() + "'): ");
+		profesor.setNombre(input.nextLine());
+		System.out.print("Ingrese apellido (Apellido original '" + profesor.getApellido() + "'): ");
+		profesor.setApellido(input.nextLine());
+		System.out.println("");
+		
+		return profesor;
+	}
+	
 	public String ingresarIndiceProfe() {
 		String opcionProfesor = "";
 		
@@ -230,7 +242,9 @@ public class ConsolePrint {
 		return opcionProfesor;
 	}
 	
-	public void verProfe(Profesor profesor) {
+	public String verProfe(Profesor profesor) {
+		String opcionString = "";
+		
 		System.out.println("Informacion de profesor");
 		System.out.println("Nombre: " + profesor.getNombre());
 		System.out.println("Apellido: " + profesor.getApellido());
@@ -247,6 +261,14 @@ public class ConsolePrint {
 			System.out.println("Este profesor no tiene asignaturas");
 		}
 		System.out.println("");
+		System.out.println("Actualizar el profesor:");
+		System.out.println("1. Actualizar profesor");
+		System.out.println("2. Regresar");
+		System.out.print("Ingrese una opcion: ");
+		opcionString = input.nextLine();
+		System.out.println("");
+		
+		return opcionString;
 	}
 	
 	public String despedirProfe() {
@@ -359,6 +381,11 @@ public class ConsolePrint {
 		} else {
 			System.out.println("Esta asignatura no tiene alumnos matriculados");
 		}
+		System.out.println("");
+	}
+	
+	public void profesorActualizado() {
+		System.out.println("Profesor actualizado exitosamente");
 		System.out.println("");
 	}
 }
