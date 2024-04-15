@@ -5,7 +5,14 @@
     "usuario": "MelAlbujar",
     "contraseña": "123123",
     "dni": "BBB",
-    "asignaturas": [
-    ]
+    "asignaturas": []
+  },
+  {
+    "nombre": "Jairo",
+    "apellido": "Jairo",
+    "usuario": "Jairo",
+    "contraseña": "Jairo",
+    "dni": "123456789",
+    "asignaturas": []
   }
 ]

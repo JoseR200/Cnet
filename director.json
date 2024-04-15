@@ -3,7 +3,8 @@
     "usuario": "JoseLopez",
     "contraseña": "123123",
     "profesores": [
-      "MelAlbujar"
+      "MelAlbujar",
+      "Jairo"
     ],
     "asignaturas": [
       "Fisica IIII",
