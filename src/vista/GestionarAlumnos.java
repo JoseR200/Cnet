@@ -38,7 +38,7 @@ public class GestionarAlumnos {
     }
 
     public void obtenerAlumno() {
-        String alumnoString = ConsolePrint.ingresarAlumno();
+        String alumnoString = ConsolePrint.ingresarAlumno().trim();
         
         if (modelo.existeAlumno(alumnoString)) {
         	Alumno alumno = modelo.getAlumnoByAlumnoUsername(alumnoString);
