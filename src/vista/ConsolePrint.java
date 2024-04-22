@@ -166,11 +166,6 @@ public abstract class ConsolePrint {
         return opcionString;
     }
 
-    public static void gestionarAsignaturasProfesor() {
-        System.out.println("Aqui estan las asignaturas que estas impartiendo ahora");
-        System.out.println();
-    }
-
     public static void gestionarAsignaturasAlumno() {
         System.out.println("Aqui estan las asignaturas que estas matriculado ahora");
         System.out.println();
@@ -492,5 +487,38 @@ public abstract class ConsolePrint {
 	public static void profesorActualizado() {
 		System.out.println("Profesor actualizado exitosamente");
 		System.out.println("");
+	}
+	
+	public static void profesorAsignaturasVacio() {
+		System.out.println("Usted no tiene asignaturas");
+        System.out.println();
+    }
+	
+	public static String gestionarAsignaturasProfesor(List<String> asignaturas) {
+		String opcionString;
+
+        System.out.println("Aqui estan las asignaturas que impartes");
+        for (int i = 0; i < asignaturas.size(); i++) {
+            System.out.println(i + ". " + asignaturas.get(i));
+        }
+        System.out.println();
+        System.out.println("Obtener Asignatura");
+		System.out.println("1. Obtener Asignatura");
+		System.out.println("2. Regresar");
+		System.out.print("Ingrese una opcion: ");
+		opcionString = input.nextLine();
+		System.out.println("");
+		
+		return opcionString;
+	}
+	
+	public static String obtenerAsignaturaProfesor() {
+		String opcionString;
+
+        System.out.print("Ingrese el numero de orden de la asignatura: ");
+        opcionString = input.nextLine();
+        System.out.println();
+
+        return opcionString;
 	}
 }

@@ -5,13 +5,13 @@
     "alumnos": []
   },
   {
-    "nombre": "Fisica IIII",
+    "nombre": "Programacion I",
     "userProfesor": "No profesor",
     "alumnos": []
   },
   {
-    "nombre": "Programacion I",
-    "userProfesor": "No profesor",
+    "nombre": "Fisica IIII",
+    "userProfesor": "MelAlbujar",
     "alumnos": []
   }
 ]

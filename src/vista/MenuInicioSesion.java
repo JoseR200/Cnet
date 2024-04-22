@@ -30,7 +30,6 @@ public class MenuInicioSesion {
 				} else if (opcionDirector == 2) {
 					menuDirector.gestionarAsignaturas(credenciales[0]);
 				} else if (opcionDirector == 3) {
-					//TODO no se ha empezdo
 					menuDirector.gestionarAlumnos();
 				} else if (opcionDirector == 4) {
 					continue;
@@ -59,10 +58,8 @@ public class MenuInicioSesion {
 				}
 				
 				if (opcionProfesor == 1) {
-					//TODO falta hacer todo
-					menuProfesor.gestionarPerfil();
+					menuProfesor.gestionarPerfil(credenciales[0]);
 				} else if (opcionProfesor == 2) {
-					//TODO falta hacer todo
 					menuProfesor.gestionarAsignaturas(credenciales[0]);
 				} else if (opcionProfesor == 3) {
 					continue;
