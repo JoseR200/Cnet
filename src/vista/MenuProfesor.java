@@ -54,7 +54,7 @@ public class MenuProfesor {
 		    			if (opcionInfoAsignatura < profesor.getAsignaturas().size() && opcionInfoAsignatura >= 0) {
 		    				Asignatura asignatura = modelo.getAsignaturaByAsignaturaName(profesor.getAsignaturas().get(opcionInfoAsignatura));
 		    				
-		    				ConsolePrint.verAsignatura(asignatura);
+		    				ConsolePrint.verAsignaturaProfe(asignatura);
 		    			} else {
 		    				ConsolePrint.errorSolicitudOpcion();
 		    			}
