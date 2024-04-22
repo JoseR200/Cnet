@@ -1,17 +1,30 @@
 [
   {
-    "nombre": "Matematica I",
+    "nombre": "Programacion I",
     "userProfesor": "No profesor",
-    "alumnos": []
+    "alumnos": [],
+    "calificaciones": []
   },
   {
     "nombre": "Fisica IIII",
-    "userProfesor": "No profesor",
-    "alumnos": []
+    "userProfesor": "MelAlbujar",
+    "alumnos": [],
+    "calificaciones": []
   },
   {
-    "nombre": "Programacion I",
+    "nombre": "Matematica I",
     "userProfesor": "No profesor",
-    "alumnos": []
+    "alumnos": [
+      "TomasOrtiz",
+      "juan"
+    ],
+    "calificaciones": [
+      {
+        "notas": [
+          9.0,
+          5.0
+        ]
+      }
+    ]
   }
 ]
