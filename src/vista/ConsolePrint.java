@@ -518,6 +518,56 @@ public abstract class ConsolePrint {
         System.out.println("");
     }
     
+    public static void profesorAsignaturasVacio() {
+		System.out.println("Usted no tiene asignaturas");
+        System.out.println();
+    }
+	
+	public static String gestionarAsignaturasProfesor(List<String> asignaturas) {
+		String opcionString;
+
+        System.out.println("Aqui estan las asignaturas que impartes");
+        for (int i = 0; i < asignaturas.size(); i++) {
+            System.out.println(i + ". " + asignaturas.get(i));
+        }
+        System.out.println();
+        System.out.println("Obtener Asignatura");
+		System.out.println("1. Obtener Asignatura");
+		System.out.println("2. Regresar");
+		System.out.print("Ingrese una opcion: ");
+		opcionString = input.nextLine();
+		System.out.println("");
+		
+		return opcionString;
+	}
+	
+	public static String obtenerAsignaturaProfesor() {
+		String opcionString;
+
+        System.out.print("Ingrese el numero de orden de la asignatura: ");
+        opcionString = input.nextLine();
+        System.out.println();
+
+        return opcionString;
+	}
+	
+	public static void verAsignaturaProfe(Asignatura asignatura) {
+        System.out.println("Informacion de asignatura");
+        System.out.println("Nombre: " + asignatura.getNombre());
+        System.out.println("Profesor: " + asignatura.getUserProfesor());
+        System.out.println();
+
+        if (!asignatura.getAlumnos().isEmpty()) {
+            System.out.println("Aqui estan los alumnos que estan llevando esta asignatura");
+            for (String a : asignatura.getAlumnos()) {
+                System.out.println(a);
+            }
+        } else {
+            System.out.println("Esta asignatura no tiene alumnos matriculados");
+        }
+        System.out.println();
+    }
+    
     public static boolean crearCalificacion(Asignatura asignatura) {
     	List<String> nuevasNotas = new ArrayList<>();
     	
