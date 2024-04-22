@@ -1,10 +1,5 @@
 [
   {
-    "nombre": "Matematica I",
-    "userProfesor": "No profesor",
-    "alumnos": []
-  },
-  {
     "nombre": "Fisica IIII",
     "userProfesor": "No profesor",
     "alumnos": []
@@ -13,5 +8,25 @@
     "nombre": "Programacion I",
     "userProfesor": "No profesor",
     "alumnos": []
+  },
+  {
+    "nombre": "Matematica I",
+    "userProfesor": "No profesor",
+    "alumnos": [
+      "TomasOrtiz",
+      "juan"
+    ],
+    "calificaciones": [
+      {
+        "alumno": "TomasOrtiz",
+        "nota": 7.5,
+        "concepto": "Tarea 2"
+      },
+      {
+        "alumno": "juan",
+        "nota": -1.0,
+        "concepto": "Tarea 2"
+      }
+    ]
   }
 ]

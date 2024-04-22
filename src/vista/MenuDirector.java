@@ -29,33 +29,33 @@ public class MenuDirector {
                     gestionarProfesores.crearProfesor(director);
                     opcionDirectorProfesores = 2;
                 } else if (opcionDirectorProfesores == 2) {
-                	continue;
+                    continue;
                 } else {
                     ConsolePrint.errorSolicitudOpcion();
                 }
             }
             return;
         } else {
-        	while (opcionDirectorProfesores != 4) {
-        		try {
+            while (opcionDirectorProfesores != 4) {
+                try {
                     opcionDirectorProfesores = Integer.parseInt(ConsolePrint.gestionarProfesoresDirector(director.getProfesores()));
                 } catch (NumberFormatException e) {
                     ConsolePrint.errorSolicitudOpcion();
                     continue;
                 }
-        		
-        		if (opcionDirectorProfesores == 1) {
-					gestionarProfesores.crearProfesor(director);
-				} else if (opcionDirectorProfesores == 2) {
-					gestionarProfesores.despedirProfesor(director);
-				} else if (opcionDirectorProfesores == 3) {
-					gestionarProfesores.obtenerProfesor(director);
-				} else if (opcionDirectorProfesores == 4) {
-					continue;
-				} else {
-					ConsolePrint.errorSolicitudOpcion();
-				}
-        	}
+
+                if (opcionDirectorProfesores == 1) {
+                    gestionarProfesores.crearProfesor(director);
+                } else if (opcionDirectorProfesores == 2) {
+                    gestionarProfesores.despedirProfesor(director);
+                } else if (opcionDirectorProfesores == 3) {
+                    gestionarProfesores.obtenerProfesor(director);
+                } else if (opcionDirectorProfesores == 4) {
+                    continue;
+                } else {
+                    ConsolePrint.errorSolicitudOpcion();
+                }
+            }
         }
     }
 
@@ -89,16 +89,18 @@ public class MenuDirector {
                     ConsolePrint.errorSolicitudOpcion();
                     continue;
                 }
+                if (opcionDirectorAsignaturas == 0) {
+                    continue;
+                }
 
                 if (opcionDirectorAsignaturas == 1) {
                     gestionarAsignaturas.crearAsignatura(director);
                 } else if (opcionDirectorAsignaturas == 2) {
-                    gestionarAsignaturas.asignarProfeAsignatura();
+                    gestionarAsignaturas.asignarProfeAsignatura(director);
                 } else if (opcionDirectorAsignaturas == 3) {
-                    //TODO CUARTO NIVEL CREAR GRUPO DE CALIFICACIONES Y OBTENER GRUPO DE CALIFICACIONES
                     gestionarAsignaturas.obtenerAsignatura(director);
                 } else if (opcionDirectorAsignaturas == 4) {
-                    continue;
+                    gestionarAsignaturas.asignarCalificacion(director);
                 } else {
                     ConsolePrint.errorSolicitudOpcion();
                 }
@@ -108,20 +110,20 @@ public class MenuDirector {
 
     public void gestionarAlumnos() {
         int opcionDirectorAlumnos = -1;
-        
+
         List<Alumno> alumnos = modelo.readAlumnosFromJson();
-        
+
         if (alumnos.size() == 0) {
-        	while (opcionDirectorAlumnos != 2) {
+            while (opcionDirectorAlumnos != 2) {
                 try {
-                	opcionDirectorAlumnos = Integer.parseInt(ConsolePrint.errorAlumnosEnCampusVacio());
+                    opcionDirectorAlumnos = Integer.parseInt(ConsolePrint.errorAlumnosEnCampusVacio());
                 } catch (NumberFormatException e) {
                     ConsolePrint.errorSolicitudOpcion();
                     continue;
                 }
 
                 if (opcionDirectorAlumnos == 1) {
-                	gestionarAlumnos.crearAlumno();
+                    gestionarAlumnos.crearAlumno();
                     opcionDirectorAlumnos = 2;
                 } else if (opcionDirectorAlumnos == 2) {
                     continue;
@@ -130,7 +132,7 @@ public class MenuDirector {
                 }
             }
         } else {
-        	while (opcionDirectorAlumnos != 5) {
+            while (opcionDirectorAlumnos != 5) {
                 try {
                     opcionDirectorAlumnos = Integer.parseInt(ConsolePrint.gestionarAlumnosDirector());
                 } catch (NumberFormatException e) {
