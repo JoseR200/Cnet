@@ -1,13 +1,15 @@
 [
   {
-    "nombre": "Fisica IIII",
-    "userProfesor": "No profesor",
-    "alumnos": []
-  },
-  {
     "nombre": "Programacion I",
     "userProfesor": "No profesor",
-    "alumnos": []
+    "alumnos": [],
+    "calificaciones": []
+  },
+  {
+    "nombre": "Fisica IIII",
+    "userProfesor": "MelAlbujar",
+    "alumnos": [],
+    "calificaciones": []
   },
   {
     "nombre": "Matematica I",
@@ -18,14 +20,10 @@
     ],
     "calificaciones": [
       {
-        "alumno": "TomasOrtiz",
-        "nota": 7.5,
-        "concepto": "Tarea 2"
-      },
-      {
-        "alumno": "juan",
-        "nota": -1.0,
-        "concepto": "Tarea 2"
+        "notas": [
+          9.0,
+          5.0
+        ]
       }
     ]
   }

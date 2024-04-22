@@ -1,10 +1,12 @@
 package vista;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 import modelos.Alumno;
 import modelos.Asignatura;
+import modelos.Calificacion;
 import modelos.Profesor;
 
 public abstract class ConsolePrint {
@@ -139,11 +141,10 @@ public abstract class ConsolePrint {
             System.out.println(i + ". " + asignaturas.get(i));
         }
         System.out.println();
-        System.out.println("0. Regresar");
         System.out.println("1. Crear nueva asignatura");
         System.out.println("2. Asignar asignatura a profesor");
         System.out.println("3. Ver informacion de una asignatura");
-        System.out.println("4. Asignar calificacion a alumnos");
+        System.out.println("4. Regresar");
         System.out.print("Ingrese una opcion: ");
         opcionString = input.nextLine();
         System.out.println();
@@ -396,7 +397,9 @@ public abstract class ConsolePrint {
         System.out.println("Calificacion creada exitosamente");
     }
 
-    public static void verAsignatura(Asignatura asignatura) {
+    public static String verAsignatura(Asignatura asignatura) {
+        String opcionString;
+
         System.out.println("Informacion de asignatura");
         System.out.println("Nombre: " + asignatura.getNombre());
         System.out.println("Profesor: " + asignatura.getUserProfesor());
@@ -411,6 +414,15 @@ public abstract class ConsolePrint {
             System.out.println("Esta asignatura no tiene alumnos matriculados");
         }
         System.out.println();
+        System.out.println("Calificaciones de asignatura:");
+        System.out.println("1. Crear nueva calificacion");
+        System.out.println("2. Obtener grupo de calificaciones");
+        System.out.println("3. Regresar");
+        System.out.print("Ingrese una opcion: ");
+        opcionString = input.nextLine();
+        System.out.println("");
+
+        return opcionString;
     }
 
     public static void alumnoCreado() {
@@ -440,6 +452,12 @@ public abstract class ConsolePrint {
     public static void errorAsignarAlumno() {
         System.out.println("Error al asignar alumno a asignatura, intente de nuevo");
         System.out.println("Puede deberse a que no existe el alumno, no existe la asignatura o el alumno ya esta matriculado en la asignatura");
+        System.out.println();
+    }
+    
+    public static void errorAsignarAlumnoNuevo() {
+        System.out.println("Error al asignar alumno a asignatura");
+        System.out.println("La asignatura ya cuenta con calificaciones");
         System.out.println();
     }
 
@@ -498,5 +516,46 @@ public abstract class ConsolePrint {
     public static void profesorActualizado() {
         System.out.println("Profesor actualizado exitosamente");
         System.out.println("");
+    }
+    
+    public static boolean crearCalificacion(Asignatura asignatura) {
+    	List<String> nuevasNotas = new ArrayList<>();
+    	
+    	for (String a : asignatura.getAlumnos()) {
+			System.out.print("Ingrese la nota para (" + a + "): ");
+			nuevasNotas.add(input.nextLine());
+        }
+    	
+    	List<Double> nuevasNotasDouble = new ArrayList<>();
+    	
+    	for (String a: nuevasNotas) {
+    		try {
+    			Double nota = Double.parseDouble(a);
+    			if (nota < 0 || nota > 10) {
+    	            System.out.println("Una nota ingresada no es válida, la nota debe estar entre 0 y 10.");
+    	        } else {
+    	        	nuevasNotasDouble.add(nota);
+    	        }
+    		} catch(NumberFormatException e) {
+    			continue;
+    		}
+    	}
+        
+    	if (nuevasNotasDouble.size() != asignatura.getAlumnos().size()) {
+    		System.out.println("Error al agregar calificaciones.");
+    		System.out.println("");
+    		return false;
+    	} else {
+    		asignatura.addCalificacion(new Calificacion(nuevasNotasDouble));
+    		System.out.println("Calificaciones agregadas con éxito.");
+    		System.out.println("");
+    	}
+    	
+    	return true;
+    }
+    
+    public static void errorCrearCalificacion() {
+        System.out.println("Error al crear calificacion, asignatura no tiene alumnos");
+        System.out.println();
     }
 }

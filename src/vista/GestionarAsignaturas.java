@@ -20,11 +20,6 @@ public class GestionarAsignaturas {
     public void asignarProfeAsignatura(Director director) {
         String[] profesorAsignatura = ConsolePrint.asignarProfesorAsignatura();
 
-        if (director.getAsignaturas().stream().distinct().anyMatch(asignatura -> asignatura.equals(profesorAsignatura[1]))) {
-            ConsolePrint.errorAsignarProfe();
-            return;
-        }
-
         if (modelo.existeProfesorExisteAsignatura(profesorAsignatura[0], profesorAsignatura[1])) {
             Profesor profesor = modelo.getProfesorByProfesorUsername(profesorAsignatura[0]);
             profesor.addAsignatura(profesorAsignatura[1]);
@@ -49,28 +44,36 @@ public class GestionarAsignaturas {
 
             if (opcionInfoAsignatura < director.getAsignaturas().size() && opcionInfoAsignatura >= 0) {
                 Asignatura asignatura = modelo.getAsignaturaByAsignaturaName(director.getAsignaturas().get(opcionInfoAsignatura));
+                                
+                int opcionObtener = -1;
+				while (opcionObtener != 3) {
+					try {
+						opcionObtener = Integer.parseInt(ConsolePrint.verAsignatura(asignatura));
 
-                ConsolePrint.verAsignatura(asignatura);
+						if (opcionObtener == 1) {
+							if (asignatura.getAlumnos().size() > 0) {
+								if (ConsolePrint.crearCalificacion(asignatura)) {
+									modelo.modifyAsignatura(asignatura);
+								}
+							} else {
+								ConsolePrint.errorCrearCalificacion();
+							}
+						} else if (opcionObtener == 2) {
+							//TODO Obtener grupo de calificaciones
+						} else if (opcionObtener == 3) {
+							continue;
+						} else {
+							ConsolePrint.errorSolicitudOpcion();
+						}
+					} catch (NumberFormatException e) {
+						ConsolePrint.errorSolicitudOpcion();
+					}
+				}
             } else {
                 ConsolePrint.errorSolicitudOpcion();
             }
         } catch (NumberFormatException e) {
             ConsolePrint.errorSolicitudOpcion();
         }
-    }
-
-    public void asignarCalificacion(Director director) {
-        int opcionInfoAsignatura = Integer.parseInt(ConsolePrint.ingresarIndiceAsignatura());
-
-        if (opcionInfoAsignatura < director.getAsignaturas().size() && opcionInfoAsignatura >= 0) {
-            Asignatura asignatura = modelo.getAsignaturaByAsignaturaName(director.getAsignaturas().get(opcionInfoAsignatura));
-            Asignatura.MenuAddCalificacion(asignatura);
-            modelo.modifyAsignatura(asignatura);
-
-            ConsolePrint.calificacionAsignada();
-            return;
-        }
-
-        ConsolePrint.errorSolicitudOpcion();
     }
 }

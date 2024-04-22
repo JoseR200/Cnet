@@ -22,33 +22,22 @@ public class GestionarAlumnos {
         String[] alumnoAsignatura = ConsolePrint.asignarAlumnoAsignatura();
 
         if (modelo.existeAlumnoExisteAsignatura(alumnoAsignatura[0], alumnoAsignatura[1])) {
-            Alumno alumno = modelo.getAlumnoByAlumnoUsername(alumnoAsignatura[0]);
-            alumno.addAsignatura(alumnoAsignatura[1]);
+        	Alumno alumno = modelo.getAlumnoByAlumnoUsername(alumnoAsignatura[0]);
+        	Asignatura asignatura = modelo.getAsignaturaByAsignaturaName(alumnoAsignatura[1]);
+        	
+        	if (asignatura.getCalificaciones().size() > 0) {
+        		alumno.addAsignatura(alumnoAsignatura[1]);
 
-            Asignatura asignatura = modelo.getAsignaturaByAsignaturaName(alumnoAsignatura[1]);
-            asignatura.addAlumno(alumnoAsignatura[0]);
+                
+                asignatura.addAlumno(alumnoAsignatura[0]);
 
-            modelo.modifyAlumno(alumno);
+                modelo.modifyAlumno(alumno);
+                modelo.modifyAsignatura(asignatura);
 
-            List<String> conceptos = asignatura.getCalificaciones().stream().map(Asignatura.Calificacion::getConcepto).toList();
-
-            for (String concepto : conceptos) {
-                boolean existe = false;
-                for (Asignatura.Calificacion calificacion : asignatura.getCalificaciones()) {
-                    if (calificacion.getAlumno().equals(alumnoAsignatura[0]) && calificacion.getConcepto().equals(concepto)) {
-                        existe = true;
-                        break;
-                    }
-                }
-                if (!existe) {
-                    asignatura.addCalificacion(alumnoAsignatura[0], concepto, -1);
-                }
-            }
-
-
-            modelo.modifyAsignatura(asignatura);
-
-            ConsolePrint.alumnoAsignado();
+                ConsolePrint.alumnoAsignado();
+        	} else {
+        		ConsolePrint.errorAsignarAlumnoNuevo();
+        	}
         } else {
             ConsolePrint.errorAsignarAlumno();
         }

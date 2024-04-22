@@ -89,18 +89,16 @@ public class MenuDirector {
                     ConsolePrint.errorSolicitudOpcion();
                     continue;
                 }
-                if (opcionDirectorAsignaturas == 0) {
-                    continue;
-                }
 
                 if (opcionDirectorAsignaturas == 1) {
                     gestionarAsignaturas.crearAsignatura(director);
                 } else if (opcionDirectorAsignaturas == 2) {
                     gestionarAsignaturas.asignarProfeAsignatura(director);
                 } else if (opcionDirectorAsignaturas == 3) {
+                	//TODO CUARTO NIVEL CREAR GRUPO DE CALIFICACIONES Y OBTENER GRUPO DE CALIFICACIONES
                     gestionarAsignaturas.obtenerAsignatura(director);
                 } else if (opcionDirectorAsignaturas == 4) {
-                    gestionarAsignaturas.asignarCalificacion(director);
+                    continue;
                 } else {
                     ConsolePrint.errorSolicitudOpcion();
                 }

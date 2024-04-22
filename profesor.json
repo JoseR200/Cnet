@@ -1,18 +1,20 @@
 [
   {
-    "nombre": "Melissa",
-    "apellido": "Albujar",
-    "usuario": "MelAlbujar",
-    "contraseña": "123123",
-    "dni": "BBB",
-    "asignaturas": []
-  },
-  {
-    "nombre": "Jairo",
-    "apellido": "Jairo",
+    "asignaturas": [],
     "usuario": "Jairo",
     "contraseña": "Jairo",
-    "dni": "123456789",
-    "asignaturas": []
+    "nombre": "Jairo",
+    "apellido": "Jairo",
+    "dni": "123456789"
+  },
+  {
+    "asignaturas": [
+      "Fisica IIII"
+    ],
+    "usuario": "MelAlbujar",
+    "contraseña": "123123",
+    "nombre": "Melissa",
+    "apellido": "Albujar",
+    "dni": "BBB"
   }
 ]
