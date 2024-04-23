@@ -49,7 +49,26 @@ public class GestionarAlumnos {
         if (modelo.existeAlumno(alumnoString)) {
             Alumno alumno = modelo.getAlumnoByAlumnoUsername(alumnoString);
 
-            ConsolePrint.verAlumno(alumno);
+            int opcionActualizar = -1;
+			while (opcionActualizar != 3) {
+				try {
+					opcionActualizar = Integer.parseInt(ConsolePrint.verAlumno(alumno));
+
+					if (opcionActualizar == -1) {
+						
+					} else if (opcionActualizar == 2) {
+						alumno = ConsolePrint.actualAlumno(alumno);
+						modelo.modifyAlumno(alumno);
+						ConsolePrint.alumnoActualizado();
+					} else if (opcionActualizar == 3) {
+						continue;
+					} else {
+						ConsolePrint.errorSolicitudOpcion();
+					}
+				} catch (NumberFormatException e) {
+					ConsolePrint.errorSolicitudOpcion();
+				}
+			}
         } else {
             ConsolePrint.errorSolicitudOpcion();
         }
