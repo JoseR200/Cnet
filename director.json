@@ -1,15 +1,16 @@
 [
   {
-    "usuario": "JoseLopez",
-    "contraseña": "123123",
     "profesores": [
       "MelAlbujar",
-      "Jairo"
+      "Jairo",
+      ""
     ],
     "asignaturas": [
       "Fisica IIII",
       "Matematica I",
       "Programacion I"
-    ]
+    ],
+    "usuario": "JoseLopez",
+    "contraseña": "123123"
   }
 ]

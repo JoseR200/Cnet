@@ -5,7 +5,9 @@ import modelos.Modelo;
 import modelos.Profesor;
 
 public class MenuProfesor {
+	GestionarAsignaturas gestionarAsignaturas = new GestionarAsignaturas();
 	Modelo modelo = new Modelo();
+	
 	
 	public void gestionarPerfil(String usuario) {
 		int opcionActualizar = -1;
@@ -30,6 +32,8 @@ public class MenuProfesor {
 		}
 	}
 	
+	
+	
 	public void gestionarAsignaturas(String usuario) {
 		int opcionObtener = -1;
 		
@@ -52,9 +56,30 @@ public class MenuProfesor {
 		    			opcionInfoAsignatura = Integer.parseInt(ConsolePrint.obtenerAsignaturaProfesor());
 		    			
 		    			if (opcionInfoAsignatura < profesor.getAsignaturas().size() && opcionInfoAsignatura >= 0) {
+		    				int opcioncalificacion= -1;
 		    				Asignatura asignatura = modelo.getAsignaturaByAsignaturaName(profesor.getAsignaturas().get(opcionInfoAsignatura));
 		    				
-		    				ConsolePrint.verAsignaturaProfe(asignatura);
+		    				while(opcioncalificacion != 2){
+		    					try {
+		    						opcioncalificacion = Integer.parseInt(ConsolePrint.verAsignaturaProfe(asignatura));
+		    	                } catch (NumberFormatException e) {
+		    	                    ConsolePrint.errorSolicitudOpcion();
+		    	                }
+		    					if ( opcioncalificacion == 1 ) {
+		    						if (asignatura.getAlumnos().size() > 0) {
+										if (ConsolePrint.crearCalificacion(asignatura)) {
+											modelo.modifyAsignatura(asignatura);
+										}
+									} else {
+										ConsolePrint.errorCrearCalificacion();
+									}
+		    					} else if (opcioncalificacion == 2) {
+		    						continue;
+		    					}
+		    					else {
+		    						ConsolePrint.errorSolicitudOpcion();
+		    					}
+		    				}
 		    			} else {
 		    				ConsolePrint.errorSolicitudOpcion();
 		    			}
