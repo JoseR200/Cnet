@@ -608,4 +608,20 @@ public abstract class ConsolePrint {
         System.out.println("Error al crear calificacion, asignatura no tiene alumnos");
         System.out.println();
     }
+
+
+public static String gestionarcalificacion() {
+	String opcionString;
+
+  
+    System.out.println();
+    System.out.println("¿Crear calificacion?");
+	System.out.println("1. Si crear");
+	System.out.println("2. Regresar");
+	System.out.print("Ingrese una opcion: ");
+	opcionString = input.nextLine();
+	System.out.println("");
+	
+	return opcionString;
+}
 }
