@@ -486,40 +486,14 @@ public abstract class ConsolePrint {
         return opcionAlumno;
     }
 
-    // Método para pedir el nombre de la asignatura al usuario
-    public static String ingresarAsignatura() {
-        String opcionAsig;
-        System.out.println("Ingrese el nombre de la asignatura:");
-        opcionAsig = input.nextLine();
-        System.out.println();
-
-        return opcionAsig;
-    }
-
-    // Método para mostrar las notas de un alumno en una asignatura
     public static void mostrarNotas(Alumno alumno, Asignatura asignatura, List<Double> notas) {
         System.out.println("Notas de " + alumno.getNombre() + " en la asignatura " + asignatura.getNombre() + ":");
         for (Double nota : notas) {
-            System.out.print(nota + " ");
+            System.out.print(nota + ", ");
         }
         System.out.println();
+        System.out.println();
     }
-
-    // Método para manejar el error cuando no hay notas
-    public static void errorSinNotas(Alumno alumno, Asignatura asignatura) {
-        System.out.println("No hay notas registradas para " + alumno.getNombre() + " en la asignatura " + asignatura.getNombre() + ".");
-    }
-
-// Método para manejar el error cuando un alumno no está inscrito en una asignatura
-public static void errorAlumnoNoInscrito(String alumnoString, Asignatura asignatura) {
-    System.out.println("El alumno " + alumnoString + " no está inscrito en la asignatura " + asignatura.getNombre() + ".");
-}
-
-// Método para manejar el error cuando una asignatura no existe
-public static void errorAsignaturaNoExiste(String asignaturaString) {
-    System.out.println("La asignatura " + asignaturaString + " no existe.");
-}
-
 
     public static String verAlumno(Alumno alumno) {
     	String opcionString = "";
@@ -533,8 +507,8 @@ public static void errorAsignaturaNoExiste(String asignaturaString) {
 
         if (!alumno.getAsignaturas().isEmpty()) {
             System.out.println("Aqui estan las asignaturas en las que estas matriculado");
-            for (String a : alumno.getAsignaturas()) {
-                System.out.println(a);
+            for (int i = 0; i < alumno.getAsignaturas().size(); i++) {
+                System.out.println(i + ". " + alumno.getAsignaturas().get(i));
             }
         } else {
             System.out.println("Este alumno no esta matriculado en ninguna asignatura");

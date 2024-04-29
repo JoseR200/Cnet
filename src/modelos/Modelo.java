@@ -1,18 +1,14 @@
 package modelos;
 
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.Reader;
-import java.io.Writer;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
+
+import java.io.*;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
 
 public class Modelo {
     private final static String DIRECTOR_JSON_FILE = "director.json";
@@ -359,6 +355,17 @@ public class Modelo {
         return condicionAlumno;
     }
     
+    public boolean existeAsignatura(String asignaturaString) {
+    	Boolean condicionAlumno = false;
+    	
+        for (Alumno al : readAlumnosFromJson()) {
+            if (al.getUsuario().equals(asignaturaString)) {
+            	condicionAlumno = true;
+            }
+        }
+        return condicionAlumno;
+    }
+    
     //Export
     public static void Export(List<?> entities, String fileName) {
         System.out.println("Exportando...");
@@ -401,20 +408,4 @@ public class Modelo {
         writer.write(lines.toString());
         writer.close();
     }
-
-    public boolean existeAsignatura(String asignaturaString) {
-    	Boolean condicionAlumno = false;
-    	
-        for (Alumno al : readAlumnosFromJson()) {
-            if (al.getUsuario().equals(asignaturaString)) {
-            	condicionAlumno = true;
-            }
-        }
-        return condicionAlumno;
-    }
-
-    
-
-    
-
 }

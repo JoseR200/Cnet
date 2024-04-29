@@ -2,8 +2,10 @@ package vista;
 
 import modelos.Alumno;
 import modelos.Asignatura;
+import modelos.Calificacion;
 import modelos.Modelo;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -55,7 +57,29 @@ public class GestionarAlumnos {
                     opcionActualizar = Integer.parseInt(ConsolePrint.verAlumno(alumno));
     
                     if (opcionActualizar == 1) {
-                        obtenerAsignaturaD(alumnoString);  
+                    	int opcionObtenerAsignatura = -1;
+                		
+                		try {
+                			opcionObtenerAsignatura = Integer.parseInt(ConsolePrint.ingresarIndiceAsignaturaAlumno());
+                			
+                			if (opcionObtenerAsignatura < alumno.getAsignaturas().size() && opcionObtenerAsignatura >= 0) {
+                				Asignatura asignatura = modelo.getAsignaturaByAsignaturaName(alumno.getAsignaturas().get(opcionObtenerAsignatura));
+                				
+            	                int indexAlumno = asignatura.getAlumnos().indexOf(alumnoString);
+            	                
+            	                List<Double> notas = new ArrayList<>();
+            	                
+            	                for (Calificacion c : asignatura.getCalificaciones()) {
+            	                    notas.add(c.getNotas().get(indexAlumno));
+            	                }
+            	    
+        	                    ConsolePrint.mostrarNotas(alumno, asignatura, notas);
+                			} else {
+                				ConsolePrint.errorSolicitudOpcion();
+                			}
+                		} catch (NumberFormatException e) {
+                			ConsolePrint.errorSolicitudOpcion();
+                		}
                     } else if (opcionActualizar == 2) {
                         alumno = ConsolePrint.actualAlumno(alumno);
                         modelo.modifyAlumno(alumno);
@@ -73,27 +97,6 @@ public class GestionarAlumnos {
             ConsolePrint.errorSolicitudOpcion();
         }
     }
-    
-    public void obtenerAsignaturaD(String alumnoString) {
-        String asignaturaString = ConsolePrint.ingresarAsignatura().trim(); // Método para pedir el nombre de la asignatura al usuario
-    
-            Asignatura asignatura = modelo.getAsignaturaByAsignaturaName(asignaturaString);
-    
-            if (asignatura.getAlumnos().contains(alumnoString)) {
-                Alumno alumno = modelo.getAlumnoByAlumnoUsername(alumnoString);
-                int indexAlumno = asignatura.getAlumnos().indexOf(alumnoString);
-    
-                if (indexAlumno != -1 && indexAlumno < asignatura.getCalificaciones().size()) {
-                    List<Double> notas = asignatura.getCalificaciones().get(indexAlumno).getNotas();
-                    ConsolePrint.mostrarNotas(alumno, asignatura, notas);
-                } else {
-                    ConsolePrint.errorSinNotas(alumno, asignatura);
-                }
-            } else {
-                ConsolePrint.errorAlumnoNoInscrito(alumnoString, asignatura);
-            }
-    }
-    
 
     public void obtenerAlumnos() {
         List<Alumno> alumnos = modelo.readAlumnosFromJson();
