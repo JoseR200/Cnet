@@ -572,7 +572,9 @@ public abstract class ConsolePrint {
         return opcionString;
 	}
 	
-	public static void verAsignaturaProfe(Asignatura asignatura) {
+	public static String verAsignaturaProfe(Asignatura asignatura) {
+		String opcionString;
+		
         System.out.println("Informacion de asignatura");
         System.out.println("Nombre: " + asignatura.getNombre());
         System.out.println("Profesor: " + asignatura.getUserProfesor());
@@ -587,6 +589,14 @@ public abstract class ConsolePrint {
             System.out.println("Esta asignatura no tiene alumnos matriculados");
         }
         System.out.println();
+        System.out.println("Gestionar asignatura");
+    	System.out.println("1. Crear Calificacion");
+    	System.out.println("2. Regresar");
+    	System.out.print("Ingrese una opcion: ");
+    	opcionString = input.nextLine();
+    	System.out.println("");
+    	
+    	return opcionString;
     }
     
     public static boolean crearCalificacion(Asignatura asignatura) {
@@ -669,3 +679,4 @@ public abstract class ConsolePrint {
         System.out.println();
 	}
 }
+
