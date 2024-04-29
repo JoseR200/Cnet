@@ -486,6 +486,15 @@ public abstract class ConsolePrint {
         return opcionAlumno;
     }
 
+    public static void mostrarNotas(Alumno alumno, Asignatura asignatura, List<Double> notas) {
+        System.out.println("Notas de " + alumno.getNombre() + " en la asignatura " + asignatura.getNombre() + ":");
+        for (Double nota : notas) {
+            System.out.print(nota + ", ");
+        }
+        System.out.println();
+        System.out.println();
+    }
+
     public static String verAlumno(Alumno alumno) {
     	String opcionString = "";
     	
@@ -498,8 +507,8 @@ public abstract class ConsolePrint {
 
         if (!alumno.getAsignaturas().isEmpty()) {
             System.out.println("Aqui estan las asignaturas en las que estas matriculado");
-            for (String a : alumno.getAsignaturas()) {
-                System.out.println(a);
+            for (int i = 0; i < alumno.getAsignaturas().size(); i++) {
+                System.out.println(i + ". " + alumno.getAsignaturas().get(i));
             }
         } else {
             System.out.println("Este alumno no esta matriculado en ninguna asignatura");

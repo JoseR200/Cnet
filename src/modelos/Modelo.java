@@ -355,6 +355,17 @@ public class Modelo {
         return condicionAlumno;
     }
     
+    public boolean existeAsignatura(String asignaturaString) {
+    	Boolean condicionAlumno = false;
+    	
+        for (Alumno al : readAlumnosFromJson()) {
+            if (al.getUsuario().equals(asignaturaString)) {
+            	condicionAlumno = true;
+            }
+        }
+        return condicionAlumno;
+    }
+    
     //Export
     public static void Export(List<?> entities, String fileName) {
         System.out.println("Exportando...");
