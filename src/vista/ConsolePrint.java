@@ -102,8 +102,18 @@ public abstract class ConsolePrint {
         return opcionString;
     }
 
-    public static String menuAlumno() {
+    public static String menuAlumno(Alumno alumno) {
         String opcionString;
+        
+        if (!alumno.getAsignaturas().isEmpty()) {
+            System.out.println("Aqui estan las asignaturas en las que estas matriculado");
+            for (int i = 0; i < alumno.getAsignaturas().size(); i++) {
+                System.out.println(i + ". " + alumno.getAsignaturas().get(i));
+            }
+        } else {
+            System.out.println("No estas matriculado en ninguna asignatura");
+        }
+        System.out.println();
 
         System.out.println("1. Gestionar asignaturas");
         System.out.println("2. Cerrar sesion");
@@ -476,7 +486,9 @@ public abstract class ConsolePrint {
         return opcionAlumno;
     }
 
-    public static void verAlumno(Alumno alumno) {
+    public static String verAlumno(Alumno alumno) {
+    	String opcionString = "";
+    	
         System.out.println("Informacion de alumno");
         System.out.println("Nombre: " + alumno.getNombre());
         System.out.println("Apellido: " + alumno.getApellido());
@@ -492,7 +504,16 @@ public abstract class ConsolePrint {
         } else {
             System.out.println("Este alumno no esta matriculado en ninguna asignatura");
         }
-        System.out.println();
+        System.out.println("");
+		System.out.println("Gestionar alumno:");
+		System.out.println("1. Obtener 1 asignatura");
+		System.out.println("2. Actualizar alumno");
+		System.out.println("3. Regresar");
+		System.out.print("Ingrese una opcion: ");
+		opcionString = input.nextLine();
+		System.out.println("");
+		
+		return opcionString;
     }
 
     public static String verMasAlumnos(int index, int total) {
@@ -618,4 +639,44 @@ public abstract class ConsolePrint {
         System.out.println("Error al crear calificacion, asignatura no tiene alumnos");
         System.out.println();
     }
+    
+    public static Alumno actualAlumno(Alumno alumno) {
+		System.out.println("Ingrese nueva informacion del alumno:");
+		System.out.print("Ingrese nombre (Nombre original '" + alumno.getNombre() + "'): ");
+		alumno.setNombre(input.nextLine());
+		System.out.print("Ingrese apellido (Apellido original '" + alumno.getApellido() + "'): ");
+		alumno.setApellido(input.nextLine());
+		System.out.println("");
+		
+		return alumno;
+	}
+	
+	public static void alumnoActualizado() {
+		System.out.println("Alumno actualizado exitosamente");
+		System.out.println("");
+	}
+	
+	public static String ingresarIndiceAsignaturaAlumno() {
+        String opcionAsignatura;
+
+        System.out.print("Ingrese el numero de orden de la asignatura: ");
+        opcionAsignatura = input.nextLine();
+        System.out.println();
+
+        return opcionAsignatura;
+    }
+
+	public static void verAsignaturaAlumno(Asignatura asignatura) {
+		System.out.println("Informacion de asignatura");
+        System.out.println("Nombre: " + asignatura.getNombre());
+        System.out.println("Profesor: " + asignatura.getUserProfesor());
+        System.out.println();
+
+        System.out.println("Aqui estan los alumnos que estan llevando esta asignatura");
+        for (String a : asignatura.getAlumnos()) {
+            System.out.println(a);
+        }
+        System.out.println();
+	}
 }
+

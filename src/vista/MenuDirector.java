@@ -143,7 +143,7 @@ public class MenuDirector {
                 } else if (opcionDirectorAlumnos == 2) {
                     gestionarAlumnos.asignarAlumnoAsignatura();
                 } else if (opcionDirectorAlumnos == 3) {
-                	//TODO CUARTO NIVEL DE OBTENER UNA ASIGNATURA, ACTUALIZAR INFO ALUMNO Y QUINTO NIVEL ACTUALIZAR CALIFICACION ALUMNO
+                	//TODO CUARTO NIVEL DE OBTENER UNA ASIGNATURA Y QUINTO NIVEL ACTUALIZAR CALIFICACION ALUMNO
                     gestionarAlumnos.obtenerAlumno();
                 } else if (opcionDirectorAlumnos == 4) {
                     gestionarAlumnos.obtenerAlumnos();
