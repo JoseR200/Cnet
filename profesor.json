@@ -10,14 +10,6 @@
     "dni": "BBB"
   },
   {
-    "asignaturas": [],
-    "usuario": "",
-    "contraseña": "",
-    "nombre": "",
-    "apellido": "",
-    "dni": ""
-  },
-  {
     "asignaturas": [
       "Matematica I"
     ],
