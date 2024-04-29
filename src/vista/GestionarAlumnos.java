@@ -45,35 +45,55 @@ public class GestionarAlumnos {
 
     public void obtenerAlumno() {
         String alumnoString = ConsolePrint.ingresarAlumno().trim();
-
+    
         if (modelo.existeAlumno(alumnoString)) {
             Alumno alumno = modelo.getAlumnoByAlumnoUsername(alumnoString);
-
+    
             int opcionActualizar = -1;
-			while (opcionActualizar != 3) {
-				try {
-					opcionActualizar = Integer.parseInt(ConsolePrint.verAlumno(alumno));
-
-					if (opcionActualizar == -1) {
-						
-					} else if (opcionActualizar == 2) {
-						alumno = ConsolePrint.actualAlumno(alumno);
-						modelo.modifyAlumno(alumno);
-						ConsolePrint.alumnoActualizado();
-					} else if (opcionActualizar == 3) {
-						continue;
-					} else {
-						ConsolePrint.errorSolicitudOpcion();
-					}
-				} catch (NumberFormatException e) {
-					ConsolePrint.errorSolicitudOpcion();
-				}
-			}
+            while (opcionActualizar != 3) {
+                try {
+                    opcionActualizar = Integer.parseInt(ConsolePrint.verAlumno(alumno));
+    
+                    if (opcionActualizar == 1) {
+                        obtenerAsignaturaD(alumnoString);  
+                    } else if (opcionActualizar == 2) {
+                        alumno = ConsolePrint.actualAlumno(alumno);
+                        modelo.modifyAlumno(alumno);
+                        ConsolePrint.alumnoActualizado();
+                    } else if (opcionActualizar == 3) {
+                        continue;
+                    } else {
+                        ConsolePrint.errorSolicitudOpcion();
+                    }
+                } catch (NumberFormatException e) {
+                    ConsolePrint.errorSolicitudOpcion();
+                }
+            }
         } else {
             ConsolePrint.errorSolicitudOpcion();
         }
-
     }
+    
+    public void obtenerAsignaturaD(String alumnoString) {
+        String asignaturaString = ConsolePrint.ingresarAsignatura().trim(); // Método para pedir el nombre de la asignatura al usuario
+    
+            Asignatura asignatura = modelo.getAsignaturaByAsignaturaName(asignaturaString);
+    
+            if (asignatura.getAlumnos().contains(alumnoString)) {
+                Alumno alumno = modelo.getAlumnoByAlumnoUsername(alumnoString);
+                int indexAlumno = asignatura.getAlumnos().indexOf(alumnoString);
+    
+                if (indexAlumno != -1 && indexAlumno < asignatura.getCalificaciones().size()) {
+                    List<Double> notas = asignatura.getCalificaciones().get(indexAlumno).getNotas();
+                    ConsolePrint.mostrarNotas(alumno, asignatura, notas);
+                } else {
+                    ConsolePrint.errorSinNotas(alumno, asignatura);
+                }
+            } else {
+                ConsolePrint.errorAlumnoNoInscrito(alumnoString, asignatura);
+            }
+    }
+    
 
     public void obtenerAlumnos() {
         List<Alumno> alumnos = modelo.readAlumnosFromJson();
