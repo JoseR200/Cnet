@@ -1,5 +1,6 @@
 package vista;
 
+import modelos.Alumno;
 import modelos.Modelo;
 
 public class MenuInicioSesion {
@@ -76,20 +77,20 @@ public class MenuInicioSesion {
 		credenciales = ConsolePrint.inicioSesion();
 		if (modelo.loginAlumno(credenciales)) {
 			int opcionAlumno = -1;
-			
+			Alumno alumno = modelo.getAlumnoByAlumnoUsername(credenciales[0]);
+
 			ConsolePrint.bienvenidaAlumno();
 			
 			while (opcionAlumno != 2) {
 				try {
-					opcionAlumno = Integer.parseInt(ConsolePrint.menuAlumno());
+					opcionAlumno = Integer.parseInt(ConsolePrint.menuAlumno(alumno));
 				} catch (NumberFormatException e) {
 					ConsolePrint.errorSolicitudOpcion();
 					continue;
 				}
 				
 				if (opcionAlumno == 1) {
-					//TODO falta hacer todo
-					menuAlumno.gestionarAsignaturas(credenciales[0]);
+					menuAlumno.gestionarAsignaturas(alumno);
 				} else if (opcionAlumno == 2) {
 					continue;
 				} else {
