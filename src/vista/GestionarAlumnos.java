@@ -74,6 +74,15 @@ public class GestionarAlumnos {
             	                }
             	    
         	                    ConsolePrint.mostrarNotas(alumno, asignatura, notas);
+        	                    
+        	                    double suma = 0.0;
+        	                    for (Double nota : notas) {
+        	                        suma += nota;
+        	                    }
+        	                    suma = suma / notas.size();
+        	                    
+        	                    System.out.printf("Media : %.2f%n", suma);
+        	                    
                 			} else {
                 				ConsolePrint.errorSolicitudOpcion();
                 			}
@@ -117,4 +126,5 @@ public class GestionarAlumnos {
             }
         }
     }
+   
 }

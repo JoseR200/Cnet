@@ -52,4 +52,5 @@ public class Asignatura {
     public void addCalificacion(Calificacion calificacion) {
         calificaciones.add(calificacion);
     }
+  
 }

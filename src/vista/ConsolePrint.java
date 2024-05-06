@@ -687,5 +687,6 @@ public abstract class ConsolePrint {
         }
         System.out.println();
 	}
+	
 }
 
