@@ -719,6 +719,7 @@ public abstract class ConsolePrint {
         suma = suma / notas.size();
         
         System.out.printf("Media de la asignatura: %.2f%n", suma);
+        System.out.println();
     }
 
 	public static String obtenerAlumnoProfesor() {

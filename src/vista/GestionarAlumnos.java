@@ -26,10 +26,9 @@ public class GestionarAlumnos {
         if (modelo.existeAlumnoExisteAsignatura(alumnoAsignatura[0], alumnoAsignatura[1])) {
         	Alumno alumno = modelo.getAlumnoByAlumnoUsername(alumnoAsignatura[0]);
         	Asignatura asignatura = modelo.getAsignaturaByAsignaturaName(alumnoAsignatura[1]);
-        	
-        	if (asignatura.getCalificaciones().size() > 0) {
-        		alumno.addAsignatura(alumnoAsignatura[1]);
 
+        	if (asignatura.getCalificaciones().size() <= 0) {
+        		alumno.addAsignatura(alumnoAsignatura[1]);
                 
                 asignatura.addAlumno(alumnoAsignatura[0]);
 
