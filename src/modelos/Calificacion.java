@@ -20,15 +20,4 @@ public class Calificacion {
     public void addNota(Double nota) {
         this.notas.add(nota);
     }
-    
-    public double getValor() {
-        if (notas.isEmpty()) {
-            return 0.0;
-        }
-        double suma = 0.0;
-        for (Double nota : notas) {
-            suma += nota;
-        }
-        return suma / notas.size();
-    }
 }

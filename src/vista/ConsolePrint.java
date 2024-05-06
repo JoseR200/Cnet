@@ -688,5 +688,17 @@ public abstract class ConsolePrint {
         System.out.println();
 	}
 	
+	public static void mostrarMedia(List<Double> notas) {
+		double suma = 0.0;
+		
+        for (Double nota : notas) {
+            suma += nota;
+        }
+        
+        suma = suma / notas.size();
+        
+        System.out.printf("Media de la asignatura: %.2f%n", suma);
+        System.out.println();
+    }
 }
 
