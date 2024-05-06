@@ -60,6 +60,7 @@ public class GestionarAsignaturas {
 							}
 						} else if (opcionObtener == 2) {
 							//TODO Obtener grupo de calificaciones
+
 						} else if (opcionObtener == 3) {
 							continue;
 						} else {

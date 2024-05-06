@@ -1,7 +1,11 @@
 package vista;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import modelos.Alumno;
 import modelos.Asignatura;
+import modelos.Calificacion;
 import modelos.Modelo;
 
 public class MenuAlumno {
@@ -23,5 +27,49 @@ public class MenuAlumno {
 		} catch (NumberFormatException e) {
 			ConsolePrint.errorSolicitudOpcion();
 		}
+	}
+	
+	public void verCalificaciones(Alumno alumno) {
+		
+            int opcionActualizar = -1;
+            
+                    opcionActualizar = Integer.parseInt(ConsolePrint.verAlumno(alumno));
+    
+                    if (opcionActualizar == 1) {
+                    	int opcionObtenerAsignatura = -1;
+                		
+                		try {
+                			opcionObtenerAsignatura = Integer.parseInt(ConsolePrint.ingresarIndiceAsignaturaAlumno());
+                			
+                			if (opcionObtenerAsignatura < alumno.getAsignaturas().size() && opcionObtenerAsignatura >= 0) {
+                				Asignatura asignatura = modelo.getAsignaturaByAsignaturaName(alumno.getAsignaturas().get(opcionObtenerAsignatura));
+                				
+            	                int indexAlumno = asignatura.getAlumnos().indexOf(alumno.getUsuario());
+            	                
+            	                List<Double> notas = new ArrayList<>();
+            	                
+            	                for (Calificacion c : asignatura.getCalificaciones()) {
+            	                    notas.add(c.getNotas().get(indexAlumno));
+            	                }
+            	    
+        	                    ConsolePrint.mostrarNotas(alumno, asignatura, notas);
+                			} else {
+                				ConsolePrint.errorSolicitudOpcion();
+                			}
+                		} catch (NumberFormatException e) {
+                			ConsolePrint.errorSolicitudOpcion();
+                		}
+                    } else if (opcionActualizar == 2) {
+                        alumno = ConsolePrint.actualAlumno(alumno);
+                        modelo.modifyAlumno(alumno);
+                        ConsolePrint.alumnoActualizado();
+                    } else if (opcionActualizar == 3) {
+                       
+                    } else {
+                        ConsolePrint.errorSolicitudOpcion();
+                    }
+               
+        
+		
 	}
 }

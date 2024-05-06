@@ -1,15 +1,5 @@
 [
   {
-    "asignaturas": [
-      "Matematica I"
-    ],
-    "usuario": "juan",
-    "contraseña": "123123",
-    "nombre": "Juan",
-    "apellido": "Perez",
-    "dni": "12345uy6789"
-  },
-  {
     "asignaturas": [],
     "usuario": "pedro",
     "contraseña": "123123",
@@ -90,5 +80,15 @@
     "nombre": "Tomix",
     "apellido": "Ort",
     "dni": "1245678l9"
+  },
+  {
+    "asignaturas": [
+      "Matematica I"
+    ],
+    "usuario": "juan",
+    "contraseña": "123123",
+    "nombre": "Juan",
+    "apellido": "Perez",
+    "dni": "12345uy6789"
   }
 ]
