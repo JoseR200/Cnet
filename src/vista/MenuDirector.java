@@ -95,7 +95,6 @@ public class MenuDirector {
                 } else if (opcionDirectorAsignaturas == 2) {
                     gestionarAsignaturas.asignarProfeAsignatura(director);
                 } else if (opcionDirectorAsignaturas == 3) {
-                	//TODO CUARTO NIVEL CREAR GRUPO DE CALIFICACIONES Y OBTENER GRUPO DE CALIFICACIONES
                     gestionarAsignaturas.obtenerAsignatura(director);
                 } else if (opcionDirectorAsignaturas == 4) {
                     continue;
@@ -143,7 +142,6 @@ public class MenuDirector {
                 } else if (opcionDirectorAlumnos == 2) {
                     gestionarAlumnos.asignarAlumnoAsignatura();
                 } else if (opcionDirectorAlumnos == 3) {
-                	//TODO CUARTO NIVEL DE OBTENER UNA ASIGNATURA Y QUINTO NIVEL ACTUALIZAR CALIFICACION ALUMNO
                     gestionarAlumnos.obtenerAlumno();
                 } else if (opcionDirectorAlumnos == 4) {
                     gestionarAlumnos.obtenerAlumnos();

@@ -52,7 +52,6 @@ public class MenuProfesor {
         			opcionObtener = Integer.parseInt(ConsolePrint.gestionarAsignaturasProfesor(profesor.getAsignaturas()));
         			
         			if (opcionObtener == 1) {
-    					//TODO CUARTO Y QUINTO NIVEL
     					int opcionInfoAsignatura = -1;
     		    		
     		    		try {
