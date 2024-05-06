@@ -599,8 +599,9 @@ public abstract class ConsolePrint {
         }
         System.out.println();
         System.out.println("Gestionar asignatura");
-    	System.out.println("1. Crear Calificacion");
-    	System.out.println("2. Regresar");
+        System.out.println("1. Obtener Alumno");
+    	System.out.println("2. Crear Calificacion");
+    	System.out.println("3. Regresar");
     	System.out.print("Ingrese una opcion: ");
     	opcionString = input.nextLine();
     	System.out.println("");
@@ -687,5 +688,24 @@ public abstract class ConsolePrint {
         }
         System.out.println();
 	}
+	
+	public static String obtenerAlumnoProfesor() {
+		String opcionAlumno;
+
+        System.out.print("Ingrese el usuario del alumno: ");
+        opcionAlumno = input.nextLine();
+        System.out.println();
+
+        return opcionAlumno;
+	}
+	
+	public static void verAlumnoProfesor(Alumno alumno) {
+    	System.out.println("Informacion de alumno");
+        System.out.println("Nombre: " + alumno.getNombre());
+        System.out.println("Apellido: " + alumno.getApellido());
+        System.out.println("Usuario: " + alumno.getUsuario());
+        System.out.println("Dni: " + alumno.getDni());
+        System.out.println();
+    }
 }
 

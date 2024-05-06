@@ -355,6 +355,17 @@ public class Modelo {
         return condicionAlumno;
     }
     
+    public boolean existeAlumnoDentroDeAsignatura(String alumno, Asignatura asignatura) {
+    	Boolean condicionAlumno = false;
+    	
+    	for (String al : asignatura.getAlumnos()) {
+            if (al.equals(alumno)) {
+            	condicionAlumno = true;
+            }
+        }
+        return condicionAlumno;
+    }
+    
     public boolean existeAsignatura(String asignaturaString) {
     	Boolean condicionAlumno = false;
     	

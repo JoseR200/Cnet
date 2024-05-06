@@ -1,6 +1,11 @@
 package vista;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import modelos.Alumno;
 import modelos.Asignatura;
+import modelos.Calificacion;
 import modelos.Modelo;
 import modelos.Profesor;
 
@@ -59,26 +64,47 @@ public class MenuProfesor {
 		    				int opcioncalificacion= -1;
 		    				Asignatura asignatura = modelo.getAsignaturaByAsignaturaName(profesor.getAsignaturas().get(opcionInfoAsignatura));
 		    				
-		    				while(opcioncalificacion != 2){
+		    				while(opcioncalificacion != 3){
 		    					try {
 		    						opcioncalificacion = Integer.parseInt(ConsolePrint.verAsignaturaProfe(asignatura));
+		    						
+		    						if (opcioncalificacion == 1) {
+			    						String opcionInfoAlumno = ConsolePrint.ingresarAlumno();
+			    			    		
+			    						if (modelo.existeAlumnoDentroDeAsignatura(opcionInfoAlumno, asignatura)) {
+		    			    				Alumno alumno = modelo.getAlumnoByAlumnoUsername(opcionInfoAlumno);
+		    			    				
+		    			    				ConsolePrint.verAlumnoProfesor(alumno);
+		    			    						                    				
+		                	                int indexAlumno = asignatura.getAlumnos().indexOf(opcionInfoAlumno);
+		                	                
+		                	                List<Double> notas = new ArrayList<>();
+		                	                
+		                	                for (Calificacion c : asignatura.getCalificaciones()) {
+		                	                    notas.add(c.getNotas().get(indexAlumno));
+		                	                }
+		                	    
+		            	                    ConsolePrint.mostrarNotas(alumno, asignatura, notas);
+		    			    			} else {
+		    			    				ConsolePrint.errorSolicitudOpcion();
+		    			    			}
+			    					} else if ( opcioncalificacion == 2 ) {
+			    						if (asignatura.getAlumnos().size() > 0) {
+											if (ConsolePrint.crearCalificacion(asignatura)) {
+												modelo.modifyAsignatura(asignatura);
+											}
+										} else {
+											ConsolePrint.errorCrearCalificacion();
+										}
+			    					} else if (opcioncalificacion == 3) {
+			    						continue;
+			    					}
+			    					else {
+			    						ConsolePrint.errorSolicitudOpcion();
+			    					}
 		    	                } catch (NumberFormatException e) {
 		    	                    ConsolePrint.errorSolicitudOpcion();
 		    	                }
-		    					if ( opcioncalificacion == 1 ) {
-		    						if (asignatura.getAlumnos().size() > 0) {
-										if (ConsolePrint.crearCalificacion(asignatura)) {
-											modelo.modifyAsignatura(asignatura);
-										}
-									} else {
-										ConsolePrint.errorCrearCalificacion();
-									}
-		    					} else if (opcioncalificacion == 2) {
-		    						continue;
-		    					}
-		    					else {
-		    						ConsolePrint.errorSolicitudOpcion();
-		    					}
 		    				}
 		    			} else {
 		    				ConsolePrint.errorSolicitudOpcion();
