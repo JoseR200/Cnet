@@ -384,7 +384,7 @@ public class Modelo {
             ExportCSV(entities, fileName);
             System.out.println("Datos exportados correctamente");
         } catch (IOException e) {
-            throw new RuntimeException("Error al exportar los datos", e);
+            throw new RuntimeException("Error al exportar los datos");
         }
     }
 

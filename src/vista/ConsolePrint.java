@@ -620,7 +620,8 @@ public abstract class ConsolePrint {
         System.out.println("Gestionar asignatura");
         System.out.println("1. Obtener Alumno");
     	System.out.println("2. Crear Calificacion");
-    	System.out.println("3. Regresar");
+    	System.out.println("3. Exportar calificaciones de alumno");
+    	System.out.println("4. Regresar");
     	System.out.print("Ingrese una opcion: ");
     	opcionString = input.nextLine();
     	System.out.println("");

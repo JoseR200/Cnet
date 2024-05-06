@@ -2,6 +2,7 @@ package vista;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import modelos.Alumno;
 import modelos.Asignatura;
@@ -64,7 +65,7 @@ public class MenuProfesor {
 		    				int opcioncalificacion= -1;
 		    				Asignatura asignatura = modelo.getAsignaturaByAsignaturaName(profesor.getAsignaturas().get(opcionInfoAsignatura));
 		    				
-		    				while(opcioncalificacion != 3){
+		    				while(opcioncalificacion != 4){
 		    					try {
 		    						opcioncalificacion = Integer.parseInt(ConsolePrint.verAsignaturaProfe(asignatura));
 		    						
@@ -97,6 +98,12 @@ public class MenuProfesor {
 											ConsolePrint.errorCrearCalificacion();
 										}
 			    					} else if (opcioncalificacion == 3) {
+			    						var profesoresAsignatura = profesor.getAsignaturas().stream().map(
+			    				                (asignaturaIndex) -> modelo.getAsignaturaByAsignaturaName(asignaturaIndex)
+			    				        ).collect(Collectors.toList());
+			    						
+			    						Modelo.Export(profesoresAsignatura, "profesoresAsignatura");
+			    					} else if (opcioncalificacion == 4) {
 			    						continue;
 			    					}
 			    					else {
