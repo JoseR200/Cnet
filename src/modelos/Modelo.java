@@ -355,6 +355,17 @@ public class Modelo {
         return condicionAlumno;
     }
     
+    public boolean existeAlumnoDentroDeAsignatura(String alumno, Asignatura asignatura) {
+    	Boolean condicionAlumno = false;
+    	
+    	for (String al : asignatura.getAlumnos()) {
+            if (al.equals(alumno)) {
+            	condicionAlumno = true;
+            }
+        }
+        return condicionAlumno;
+    }
+    
     public boolean existeAsignatura(String asignaturaString) {
     	Boolean condicionAlumno = false;
     	
@@ -373,7 +384,7 @@ public class Modelo {
             ExportCSV(entities, fileName);
             System.out.println("Datos exportados correctamente");
         } catch (IOException e) {
-            throw new RuntimeException("Error al exportar los datos", e);
+            throw new RuntimeException("Error al exportar los datos");
         }
     }
 

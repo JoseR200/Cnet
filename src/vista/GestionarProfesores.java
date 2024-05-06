@@ -92,13 +92,4 @@ public class GestionarProfesores {
 			ConsolePrint.errorSolicitudOpcion();
 		}
 	}
-	
-	//Revisar
-	public void exportarProfesores(Director director) {
-		var profesores = director.getProfesores().stream().map(
-                (professor) -> modelo.getProfesorByProfesorUsername(professor)
-        ).collect(Collectors.toList());
-		
-		Modelo.Export(profesores, "profesores");
-	}
 }
