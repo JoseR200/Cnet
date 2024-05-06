@@ -26,10 +26,9 @@ public class GestionarAlumnos {
         if (modelo.existeAlumnoExisteAsignatura(alumnoAsignatura[0], alumnoAsignatura[1])) {
         	Alumno alumno = modelo.getAlumnoByAlumnoUsername(alumnoAsignatura[0]);
         	Asignatura asignatura = modelo.getAsignaturaByAsignaturaName(alumnoAsignatura[1]);
-        	
-        	if (asignatura.getCalificaciones().size() > 0) {
-        		alumno.addAsignatura(alumnoAsignatura[1]);
 
+        	if (asignatura.getCalificaciones().size() <= 0) {
+        		alumno.addAsignatura(alumnoAsignatura[1]);
                 
                 asignatura.addAlumno(alumnoAsignatura[0]);
 
@@ -74,6 +73,9 @@ public class GestionarAlumnos {
             	                }
             	    
         	                    ConsolePrint.mostrarNotas(alumno, asignatura, notas);
+        	                    
+        	                    ConsolePrint.mostrarMedia(notas);
+        	                    
                 			} else {
                 				ConsolePrint.errorSolicitudOpcion();
                 			}
@@ -106,7 +108,7 @@ public class GestionarAlumnos {
                 if (i >= alumnos.size()) {
                     break;
                 }
-                ConsolePrint.verAlumno(alumnos.get(i));
+                ConsolePrint.verAlumnoDentroDeAlumnos(alumnos.get(i));
                 i++;
             }
             if (i < alumnos.size()) {
