@@ -74,6 +74,9 @@ public class GestionarAlumnos {
             	                }
             	    
         	                    ConsolePrint.mostrarNotas(alumno, asignatura, notas);
+        	                    
+        	                    ConsolePrint.mostrarMedia(notas);
+        	                    
                 			} else {
                 				ConsolePrint.errorSolicitudOpcion();
                 			}
