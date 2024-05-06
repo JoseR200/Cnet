@@ -524,6 +524,25 @@ public abstract class ConsolePrint {
 		
 		return opcionString;
     }
+    
+    public static void verAlumnoDentroDeAlumnos(Alumno alumno) {
+    	System.out.println("Informacion de alumno");
+        System.out.println("Nombre: " + alumno.getNombre());
+        System.out.println("Apellido: " + alumno.getApellido());
+        System.out.println("Usuario: " + alumno.getUsuario());
+        System.out.println("Dni: " + alumno.getDni());
+        System.out.println();
+
+        if (!alumno.getAsignaturas().isEmpty()) {
+            System.out.println("Aqui estan las asignaturas en las que estas matriculado");
+            for (int i = 0; i < alumno.getAsignaturas().size(); i++) {
+                System.out.println(i + ". " + alumno.getAsignaturas().get(i));
+            }
+        } else {
+            System.out.println("Este alumno no esta matriculado en ninguna asignatura");
+        }
+        System.out.println();
+    }
 
     public static String verMasAlumnos(int index, int total) {
         System.out.println("Alumnos mostrados: " + index + " de " + total);
