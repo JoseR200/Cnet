@@ -524,6 +524,25 @@ public abstract class ConsolePrint {
 		
 		return opcionString;
     }
+    
+    public static void verAlumnoDentroDeAlumnos(Alumno alumno) {
+    	System.out.println("Informacion de alumno");
+        System.out.println("Nombre: " + alumno.getNombre());
+        System.out.println("Apellido: " + alumno.getApellido());
+        System.out.println("Usuario: " + alumno.getUsuario());
+        System.out.println("Dni: " + alumno.getDni());
+        System.out.println();
+
+        if (!alumno.getAsignaturas().isEmpty()) {
+            System.out.println("Aqui estan las asignaturas en las que estas matriculado");
+            for (int i = 0; i < alumno.getAsignaturas().size(); i++) {
+                System.out.println(i + ". " + alumno.getAsignaturas().get(i));
+            }
+        } else {
+            System.out.println("Este alumno no esta matriculado en ninguna asignatura");
+        }
+        System.out.println();
+    }
 
     public static String verMasAlumnos(int index, int total) {
         System.out.println("Alumnos mostrados: " + index + " de " + total);
@@ -599,8 +618,10 @@ public abstract class ConsolePrint {
         }
         System.out.println();
         System.out.println("Gestionar asignatura");
-    	System.out.println("1. Crear Calificacion");
-    	System.out.println("2. Regresar");
+        System.out.println("1. Obtener Alumno");
+    	System.out.println("2. Crear Calificacion");
+    	System.out.println("3. Exportar calificaciones de alumno");
+    	System.out.println("4. Regresar");
     	System.out.print("Ingrese una opcion: ");
     	opcionString = input.nextLine();
     	System.out.println("");
@@ -698,6 +719,24 @@ public abstract class ConsolePrint {
         suma = suma / notas.size();
         
         System.out.printf("Media de la asignatura: %.2f%n", suma);
+    }
+
+	public static String obtenerAlumnoProfesor() {
+		String opcionAlumno;
+
+        System.out.print("Ingrese el usuario del alumno: ");
+        opcionAlumno = input.nextLine();
+        System.out.println();
+
+        return opcionAlumno;
+	}
+	
+	public static void verAlumnoProfesor(Alumno alumno) {
+    	System.out.println("Informacion de alumno");
+        System.out.println("Nombre: " + alumno.getNombre());
+        System.out.println("Apellido: " + alumno.getApellido());
+        System.out.println("Usuario: " + alumno.getUsuario());
+        System.out.println("Dni: " + alumno.getDni());
         System.out.println();
     }
 }

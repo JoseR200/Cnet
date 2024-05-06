@@ -109,7 +109,7 @@ public class GestionarAlumnos {
                 if (i >= alumnos.size()) {
                     break;
                 }
-                ConsolePrint.verAlumno(alumnos.get(i));
+                ConsolePrint.verAlumnoDentroDeAlumnos(alumnos.get(i));
                 i++;
             }
             if (i < alumnos.size()) {
