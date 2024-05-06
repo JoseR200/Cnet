@@ -1,6 +1,5 @@
 package vista;
 
-
 import modelos.Alumno;
 import modelos.Modelo;
 
@@ -93,8 +92,6 @@ public class MenuInicioSesion {
 				if (opcionAlumno == 1) {
 					menuAlumno.gestionarAsignaturas(alumno);
 				} else if (opcionAlumno == 2) {
-					menuAlumno.verCalificaciones(alumno);
-				} else if (opcionAlumno == 3) {
 					continue;
 				} else {
 					ConsolePrint.errorSolicitudOpcion();

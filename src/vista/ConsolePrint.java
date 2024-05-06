@@ -116,7 +116,6 @@ public abstract class ConsolePrint {
         System.out.println();
 
         System.out.println("1. Gestionar asignaturas");
-        System.out.println("2. Ver informacion");
         System.out.println("2. Cerrar sesion");
         System.out.print("Ingrese una opcion: ");
         opcionString = input.nextLine();
