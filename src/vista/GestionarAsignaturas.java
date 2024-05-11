@@ -1,6 +1,9 @@
 package vista;
 
+import java.util.List;
+
 import modelos.Asignatura;
+import modelos.Calificacion;
 import modelos.Director;
 import modelos.Modelo;
 import modelos.Profesor;
@@ -59,7 +62,33 @@ public class GestionarAsignaturas {
 								ConsolePrint.errorCrearCalificacion();
 							}
 						} else if (opcionObtener == 2) {
-							
+                            List<Calificacion> calificaciones = asignatura.getCalificaciones();
+                            if (!calificaciones.isEmpty()) {
+                                
+                                double maxNota = calificaciones.stream()
+                                                               .flatMap(calificacion -> calificacion.getNotas().stream())
+                                                               .mapToDouble(Double::doubleValue)
+                                                               .max()
+                                                               .orElse(Double.NaN); 
+                                double minNota = calificaciones.stream()
+                                                               .flatMap(calificacion -> calificacion.getNotas().stream())
+                                                               .mapToDouble(Double::doubleValue)
+                                                               .min()
+                                                               .orElse(Double.NaN);
+                                double mediaNota = calificaciones.stream()
+                                                                 .flatMap(calificacion -> calificacion.getNotas().stream())
+                                                                 .mapToDouble(Double::doubleValue)
+                                                                 .average()
+                                                                 .orElse(Double.NaN); 
+                        
+                                if (!Double.isNaN(maxNota)) { 
+                                    ConsolePrint.mostrarEstadisticasCalificaciones(maxNota, minNota, mediaNota);
+                                } else {
+                                    ConsolePrint.errorNoCalificaciones();
+                                }
+                            } else {
+                                ConsolePrint.errorNoCalificaciones();
+                            }
 						} else if (opcionObtener == 3) {
 							continue;
 						} else {

@@ -740,5 +740,29 @@ public abstract class ConsolePrint {
         System.out.println("Dni: " + alumno.getDni());
         System.out.println();
     }
+
+    public static void mostrarEstadisticasCalificaciones(double max, double min, double media) {
+        System.out.println("Nota más alta: " + max);
+        System.out.println("Nota más baja: " + min);
+        System.out.println("Nota media: " + media);
+    }
+    
+    public static void errorNoCalificaciones() {
+        System.out.println("No hay calificaciones registradas para esta asignatura.");
+    }
+
+    public static void mostrarMenuAsignaturas() {
+        System.out.println("Seleccione una opción:");
+        System.out.println("1 - Ver notas de una asignatura específica");
+        System.out.println("2 - Ver media final de todas las asignaturas");
+        System.out.println("0 - Salir");
+    }
+
+    public static void mostrarMediaFinal(Alumno alumno, double mediaFinal) {
+        System.out.println("Media final de todas las asignaturas de " + alumno.getUsuario() + " es: " + mediaFinal);
+    }
+    
+    
+    
 }
 
