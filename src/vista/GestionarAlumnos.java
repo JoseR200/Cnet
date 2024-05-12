@@ -49,11 +49,28 @@ public class GestionarAlumnos {
     
         if (modelo.existeAlumno(alumnoString)) {
             Alumno alumno = modelo.getAlumnoByAlumnoUsername(alumnoString);
+            
+            double sumaMediaFinal = 0;
+			for (String a: alumno.getAsignaturas()) {
+				Asignatura asignatura = modelo.getAsignaturaByAsignaturaName(a);
+				
+				List<Calificacion> calificaciones = asignatura.getCalificaciones();
+	            int indexAlumno = asignatura.getAlumnos().indexOf(alumno.getUsuario());
+
+	            double sumaNotas = 0;
+	            for (Calificacion cal : calificaciones) {
+	                sumaNotas += cal.getNotas().get(indexAlumno);
+	            }
+	            sumaNotas = sumaNotas / calificaciones.size();
+	            
+	            sumaMediaFinal += sumaNotas;
+			}
+			sumaMediaFinal = sumaMediaFinal / alumno.getAsignaturas().size();
     
             int opcionActualizar = -1;
             while (opcionActualizar != 3) {
                 try {
-                    opcionActualizar = Integer.parseInt(ConsolePrint.verAlumno(alumno));
+                    opcionActualizar = Integer.parseInt(ConsolePrint.verAlumno(alumno, sumaMediaFinal));
     
                     if (opcionActualizar == 1) {
                     	int opcionObtenerAsignatura = -1;

@@ -500,7 +500,7 @@ public abstract class ConsolePrint {
         System.out.println();
     }
 
-    public static String verAlumno(Alumno alumno) {
+    public static String verAlumno(Alumno alumno, Double mediaFinal) {
     	String opcionString = "";
     	
         System.out.println("Informacion de alumno");
@@ -515,6 +515,8 @@ public abstract class ConsolePrint {
             for (int i = 0; i < alumno.getAsignaturas().size(); i++) {
                 System.out.println(i + ". " + alumno.getAsignaturas().get(i));
             }
+            System.out.println();
+            System.out.printf("Media final: %.2f%n", mediaFinal);
         } else {
             System.out.println("Este alumno no esta matriculado en ninguna asignatura");
         }
