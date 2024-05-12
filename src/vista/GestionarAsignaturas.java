@@ -1,9 +1,6 @@
 package vista;
 
-import java.util.List;
-
 import modelos.Asignatura;
-import modelos.Calificacion;
 import modelos.Director;
 import modelos.Modelo;
 import modelos.Profesor;
@@ -62,33 +59,35 @@ public class GestionarAsignaturas {
 								ConsolePrint.errorCrearCalificacion();
 							}
 						} else if (opcionObtener == 2) {
-                            List<Calificacion> calificaciones = asignatura.getCalificaciones();
-                            if (!calificaciones.isEmpty()) {
-                                
-                                double maxNota = calificaciones.stream()
-                                                               .flatMap(calificacion -> calificacion.getNotas().stream())
-                                                               .mapToDouble(Double::doubleValue)
-                                                               .max()
-                                                               .orElse(Double.NaN); 
-                                double minNota = calificaciones.stream()
-                                                               .flatMap(calificacion -> calificacion.getNotas().stream())
-                                                               .mapToDouble(Double::doubleValue)
-                                                               .min()
-                                                               .orElse(Double.NaN);
-                                double mediaNota = calificaciones.stream()
-                                                                 .flatMap(calificacion -> calificacion.getNotas().stream())
-                                                                 .mapToDouble(Double::doubleValue)
-                                                                 .average()
-                                                                 .orElse(Double.NaN); 
-                        
-                                if (!Double.isNaN(maxNota)) { 
-                                    ConsolePrint.mostrarEstadisticasCalificaciones(maxNota, minNota, mediaNota);
-                                } else {
-                                    ConsolePrint.errorNoCalificaciones();
-                                }
-                            } else {
-                                ConsolePrint.errorNoCalificaciones();
-                            }
+							int opcionGrupoCalificaciones = -1;
+			                
+			                while (opcionGrupoCalificaciones != 2) {
+			                	try {
+			                		opcionGrupoCalificaciones = Integer.parseInt(ConsolePrint.obtenerGrupoCalificacion());
+			                		
+			                		if (opcionGrupoCalificaciones == 1) {
+			                			int indiceGrupoCalificacion = -1;
+			                			
+			                			try {
+			                				indiceGrupoCalificacion = Integer.parseInt(ConsolePrint.ingresarIndiceGrupoCalificacion());
+			                    			
+			                    			if (indiceGrupoCalificacion <= asignatura.getCalificaciones().size() && indiceGrupoCalificacion >= 1) {
+			                    				ConsolePrint.mostrarGrupoCalificacion(asignatura, indiceGrupoCalificacion);
+			                    			} else {
+			                    				ConsolePrint.errorSolicitudOpcion();
+			                    			}
+			                    		} catch (NumberFormatException e) {
+			                    			ConsolePrint.errorSolicitudOpcion();
+			                    		}
+			                		} else if (opcionGrupoCalificaciones == 2) {
+			                			continue;
+			                		} else {
+			                			ConsolePrint.errorSolicitudOpcion();
+			                		}
+			            		} catch (NumberFormatException e) {
+			            			ConsolePrint.errorSolicitudOpcion();
+			            		}
+			                }
 						} else if (opcionObtener == 3) {
 							continue;
 						} else {
