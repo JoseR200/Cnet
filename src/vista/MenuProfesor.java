@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 import modelos.Alumno;
+import modelos.AlumnoNota;
 import modelos.Asignatura;
 import modelos.Calificacion;
 import modelos.Modelo;
@@ -13,7 +14,6 @@ import modelos.Profesor;
 public class MenuProfesor {
     GestionarAsignaturas gestionarAsignaturas = new GestionarAsignaturas();
     Modelo modelo = new Modelo();
-
 
     public void gestionarPerfil(String usuario) {
         int opcionActualizar = -1;
@@ -37,7 +37,6 @@ public class MenuProfesor {
             }
         }
     }
-
 
     public void gestionarAsignaturas(String usuario) {
         int opcionObtener = -1;
@@ -97,11 +96,9 @@ public class MenuProfesor {
                                                     (indexAlumno) -> {
                                                         List<AlumnoNota> notasAlumno = new ArrayList<>();
                                                         for (Calificacion c : asignatura.getCalificaciones()) {
-                                                            var index = asignatura.getCalificaciones().indexOf(c);
                                                             notasAlumno.add(new AlumnoNota(
                                                                     asignatura.getAlumnos().get(indexAlumno),
-                                                                    c.getNotas().get(indexAlumno),
-                                                                    index
+                                                                    c.getNotas().get(indexAlumno)
                                                             ));
                                                         }
                                                         return notasAlumno;
@@ -132,19 +129,6 @@ public class MenuProfesor {
                     ConsolePrint.errorSolicitudOpcion();
                 }
             }
-        }
-    }
-
-
-    private static class AlumnoNota {
-        public final String alumno;
-        public final Double nota;
-        public final Integer orden;
-
-        public AlumnoNota(String alumno, Double nota, Integer orden) {
-            this.alumno = alumno;
-            this.nota = nota;
-            this.orden = orden;
         }
     }
 }
