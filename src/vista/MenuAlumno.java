@@ -9,7 +9,7 @@ import modelos.Calificacion;
 import modelos.Modelo;
 
 public class MenuAlumno {
-	Modelo modelo = new Modelo();
+    Modelo modelo = new Modelo();
 
 	public void gestionarAsignaturas(Alumno alumno) {
 		int opcionObtenerAsignatura = -1;

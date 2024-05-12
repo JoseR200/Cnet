@@ -1,6 +1,10 @@
 package vista;
 
+import java.util.List;
+
 import modelos.Alumno;
+import modelos.Asignatura;
+import modelos.Calificacion;
 import modelos.Modelo;
 
 public class MenuInicioSesion {
@@ -81,9 +85,26 @@ public class MenuInicioSesion {
 
 			ConsolePrint.bienvenidaAlumno();
 			
+			double sumaMediaFinal = 0;
+			for (String a: alumno.getAsignaturas()) {
+				Asignatura asignatura = modelo.getAsignaturaByAsignaturaName(a);
+				
+				List<Calificacion> calificaciones = asignatura.getCalificaciones();
+	            int indexAlumno = asignatura.getAlumnos().indexOf(alumno.getUsuario());
+
+	            double sumaNotas = 0;
+	            for (Calificacion cal : calificaciones) {
+	                sumaNotas += cal.getNotas().get(indexAlumno);
+	            }
+	            sumaNotas = sumaNotas / calificaciones.size();
+	            
+	            sumaMediaFinal += sumaNotas;
+			}
+			sumaMediaFinal = sumaMediaFinal / alumno.getAsignaturas().size();
+			
 			while (opcionAlumno != 2) {
 				try {
-					opcionAlumno = Integer.parseInt(ConsolePrint.menuAlumno(alumno));
+					opcionAlumno = Integer.parseInt(ConsolePrint.menuAlumno(alumno, sumaMediaFinal));
 				} catch (NumberFormatException e) {
 					ConsolePrint.errorSolicitudOpcion();
 					continue;

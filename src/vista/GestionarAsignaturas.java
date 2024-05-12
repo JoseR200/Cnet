@@ -59,7 +59,35 @@ public class GestionarAsignaturas {
 								ConsolePrint.errorCrearCalificacion();
 							}
 						} else if (opcionObtener == 2) {
-							
+							int opcionGrupoCalificaciones = -1;
+			                
+			                while (opcionGrupoCalificaciones != 2) {
+			                	try {
+			                		opcionGrupoCalificaciones = Integer.parseInt(ConsolePrint.obtenerGrupoCalificacion());
+			                		
+			                		if (opcionGrupoCalificaciones == 1) {
+			                			int indiceGrupoCalificacion = -1;
+			                			
+			                			try {
+			                				indiceGrupoCalificacion = Integer.parseInt(ConsolePrint.ingresarIndiceGrupoCalificacion());
+			                    			
+			                    			if (indiceGrupoCalificacion <= asignatura.getCalificaciones().size() && indiceGrupoCalificacion >= 1) {
+			                    				ConsolePrint.mostrarGrupoCalificacion(asignatura, indiceGrupoCalificacion);
+			                    			} else {
+			                    				ConsolePrint.errorSolicitudOpcion();
+			                    			}
+			                    		} catch (NumberFormatException e) {
+			                    			ConsolePrint.errorSolicitudOpcion();
+			                    		}
+			                		} else if (opcionGrupoCalificaciones == 2) {
+			                			continue;
+			                		} else {
+			                			ConsolePrint.errorSolicitudOpcion();
+			                		}
+			            		} catch (NumberFormatException e) {
+			            			ConsolePrint.errorSolicitudOpcion();
+			            		}
+			                }
 						} else if (opcionObtener == 3) {
 							continue;
 						} else {

@@ -102,7 +102,7 @@ public abstract class ConsolePrint {
         return opcionString;
     }
 
-    public static String menuAlumno(Alumno alumno) {
+    public static String menuAlumno(Alumno alumno, Double mediaFinal) {
         String opcionString;
         
         if (!alumno.getAsignaturas().isEmpty()) {
@@ -110,6 +110,8 @@ public abstract class ConsolePrint {
             for (int i = 0; i < alumno.getAsignaturas().size(); i++) {
                 System.out.println(i + ". " + alumno.getAsignaturas().get(i));
             }
+            System.out.println();
+            System.out.printf("Media final: %.2f%n", mediaFinal);
         } else {
             System.out.println("No estas matriculado en ninguna asignatura");
         }
@@ -420,6 +422,9 @@ public abstract class ConsolePrint {
             for (String a : asignatura.getAlumnos()) {
                 System.out.println(a);
             }
+            
+            System.out.println();
+            System.out.println("Esta asignatura tiene " + asignatura.getCalificaciones().size() + " calificaciones");
         } else {
             System.out.println("Esta asignatura no tiene alumnos matriculados");
         }
@@ -742,7 +747,7 @@ public abstract class ConsolePrint {
         System.out.println("Dni: " + alumno.getDni());
         System.out.println();
     }
-	
+
 	public static String obtenerGrupoCalificacion() {
 		String opcionString;
 		
