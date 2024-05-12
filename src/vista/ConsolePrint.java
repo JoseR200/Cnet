@@ -707,6 +707,8 @@ public abstract class ConsolePrint {
             System.out.println(a);
         }
         System.out.println();
+        System.out.println("Esta asignatura tiene " + asignatura.getCalificaciones().size() + " calificaciones");
+        System.out.println();
 	}
 	
 	public static void mostrarMedia(List<Double> notas) {
@@ -739,6 +741,50 @@ public abstract class ConsolePrint {
         System.out.println("Usuario: " + alumno.getUsuario());
         System.out.println("Dni: " + alumno.getDni());
         System.out.println();
+    }
+	
+	public static String obtenerGrupoCalificacion() {
+		String opcionString;
+		
+        System.out.println("Obtener grupo de calificacion");
+        System.out.println("1. Obtener grupo de calificacion");
+    	System.out.println("2. Regresar");
+    	System.out.print("Ingrese una opcion: ");
+    	opcionString = input.nextLine();
+    	System.out.println("");
+    	
+    	return opcionString;
+    }
+	
+	public static String ingresarIndiceGrupoCalificacion() {
+        String opcionGrupo;
+
+        System.out.print("Ingrese el numero de orden de la actividad: ");
+        opcionGrupo = input.nextLine();
+        System.out.println();
+
+        return opcionGrupo;
+    }
+	
+	public static void mostrarGrupoCalificacion(Asignatura asignatura, int indiceGrupoCalificacion) {
+		Double media = 0.0;
+		Double baja = 11.0;
+		Double alta = -1.0;
+		
+		Calificacion calificacion=asignatura.getCalificaciones().get(indiceGrupoCalificacion - 1);
+		
+		for (Double d: calificacion.getNotas()) {
+			media = media + d;
+			if (d<baja) baja=d;
+			if (d>alta) alta=d;
+		}
+		
+		media = media/calificacion.getNotas().size();
+
+		System.out.printf("Media de la actividad: %.2f%n", media);
+		System.out.printf("Nota mas alta: %.2f%n", alta);
+		System.out.printf("Nota mas baja: %.2f%n", baja);
+		System.out.println();
     }
 }
 
