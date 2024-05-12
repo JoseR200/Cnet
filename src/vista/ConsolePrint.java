@@ -620,6 +620,8 @@ public abstract class ConsolePrint {
             for (String a : asignatura.getAlumnos()) {
                 System.out.println(a);
             }
+            System.out.println();
+            System.out.println("Esta asignatura tiene " + asignatura.getCalificaciones().size() + " calificaciones");
         } else {
             System.out.println("Esta asignatura no tiene alumnos matriculados");
         }
@@ -627,8 +629,9 @@ public abstract class ConsolePrint {
         System.out.println("Gestionar asignatura");
         System.out.println("1. Obtener Alumno");
     	System.out.println("2. Crear Calificacion");
-    	System.out.println("3. Exportar calificaciones de alumno");
-    	System.out.println("4. Regresar");
+    	System.out.println("3. Obtener grupo de calificaciones");
+    	System.out.println("4. Exportar calificaciones de alumno");
+    	System.out.println("5. Regresar");
     	System.out.print("Ingrese una opcion: ");
     	opcionString = input.nextLine();
     	System.out.println("");
