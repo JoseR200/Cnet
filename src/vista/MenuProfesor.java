@@ -59,7 +59,7 @@ public class MenuProfesor {
                                 int opcioncalificacion = -1;
                                 Asignatura asignatura = modelo.getAsignaturaByAsignaturaName(profesor.getAsignaturas().get(opcionInfoAsignatura));
 
-                                while (opcioncalificacion != 4) {
+                                while (opcioncalificacion != 5) {
                                     try {
                                         opcioncalificacion = Integer.parseInt(ConsolePrint.verAsignaturaProfe(asignatura));
 
@@ -80,6 +80,8 @@ public class MenuProfesor {
                                                 }
 
                                                 ConsolePrint.mostrarNotas(alumno, asignatura, notas);
+                                                
+                                                ConsolePrint.mostrarMedia(notas);
                                             } else {
                                                 ConsolePrint.errorSolicitudOpcion();
                                             }
@@ -92,6 +94,36 @@ public class MenuProfesor {
                                                 ConsolePrint.errorCrearCalificacion();
                                             }
                                         } else if (opcioncalificacion == 3) {
+                                        	int opcionGrupoCalificaciones = -1;
+                        	                
+                        	                while (opcionGrupoCalificaciones != 2) {
+                        	                	try {
+                        	                		opcionGrupoCalificaciones = Integer.parseInt(ConsolePrint.obtenerGrupoCalificacion());
+                        	                		
+                        	                		if (opcionGrupoCalificaciones == 1) {
+                        	                			int indiceGrupoCalificacion = -1;
+                        	                			
+                        	                			try {
+                        	                				indiceGrupoCalificacion = Integer.parseInt(ConsolePrint.ingresarIndiceGrupoCalificacion());
+                        	                    			
+                        	                    			if (indiceGrupoCalificacion <= asignatura.getCalificaciones().size() && indiceGrupoCalificacion >= 1) {
+                        	                    				ConsolePrint.mostrarGrupoCalificacion(asignatura, indiceGrupoCalificacion);
+                        	                    			} else {
+                        	                    				ConsolePrint.errorSolicitudOpcion();
+                        	                    			}
+                        	                    		} catch (NumberFormatException e) {
+                        	                    			ConsolePrint.errorSolicitudOpcion();
+                        	                    		}
+                        	                		} else if (opcionGrupoCalificaciones == 2) {
+                        	                			continue;
+                        	                		} else {
+                        	                			ConsolePrint.errorSolicitudOpcion();
+                        	                		}
+                        	            		} catch (NumberFormatException e) {
+                        	            			ConsolePrint.errorSolicitudOpcion();
+                        	            		}
+                        	                }
+                                        } else if (opcioncalificacion == 4) {
                                             var notas = IntStream.range(0, asignatura.getAlumnos().size()).mapToObj(
                                                     (indexAlumno) -> {
                                                         List<AlumnoNota> notasAlumno = new ArrayList<>();
@@ -105,7 +137,7 @@ public class MenuProfesor {
                                                     }
                                             ).flatMap(List::stream).toList();
                                             Modelo.Export(notas, "profesoresAsignatura");
-                                        } else if (opcioncalificacion == 4) {
+                                        } else if (opcioncalificacion == 5) {
                                             continue;
                                         } else {
                                             ConsolePrint.errorSolicitudOpcion();
