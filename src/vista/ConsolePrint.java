@@ -20,7 +20,7 @@ public abstract class ConsolePrint {
     public static String menuPrincipal() {
         String opcionString;
 
-        System.out.println("Menú principal:");
+        System.out.println("Menu principal:");
         System.out.println("1. Ingresar como Director");
         System.out.println("2. Ingresar como Profesor");
         System.out.println("3. Ingresar como Alumno");
@@ -653,7 +653,7 @@ public abstract class ConsolePrint {
     		try {
     			Double nota = Double.parseDouble(a);
     			if (nota < 0 || nota > 10) {
-    	            System.out.println("Una nota ingresada no es válida, la nota debe estar entre 0 y 10.");
+    	            System.out.println("Una nota ingresada no es valida, la nota debe estar entre 0 y 10.");
     	        } else {
     	        	nuevasNotasDouble.add(nota);
     	        }
@@ -668,7 +668,7 @@ public abstract class ConsolePrint {
     		return false;
     	} else {
     		asignatura.addCalificacion(new Calificacion(nuevasNotasDouble));
-    		System.out.println("Calificaciones agregadas con éxito.");
+    		System.out.println("Calificaciones agregadas con exito.");
     		System.out.println("");
     	}
     	
@@ -791,6 +791,9 @@ public abstract class ConsolePrint {
 		
 		media = media/calificacion.getNotas().size();
 
+		System.out.println("Mostrando grupo de calificacion numero " + indiceGrupoCalificacion);
+		System.out.println("para la asignatura de " + asignatura.getNombre() + " que la imparte " + asignatura.getUserProfesor());
+		System.out.println();
 		System.out.printf("Media de la actividad: %.2f%n", media);
 		System.out.printf("Nota mas alta: %.2f%n", alta);
 		System.out.printf("Nota mas baja: %.2f%n", baja);
